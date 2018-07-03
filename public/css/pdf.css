@@ -1,0 +1,33 @@
+table {
+   
+    width: 100%;
+    
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.header{
+	text-align: center;
+
+}
+
+.imglogo{
+	 width: 250px; height:100px;
+	 display:block;
+
+}
+
+img{
+display:block;
+margin:auto;
+}

@@ -1,0 +1,8 @@
+<?php
+
+$peso=;
+echo $peso;
+
+
+
+?>
