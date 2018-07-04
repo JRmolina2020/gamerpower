@@ -19,13 +19,18 @@ require 'header.php';
                 <th>TD</th>
                 <th>Identificacion</th>
                 <th>Nombre</th>
-                <th>Correo</th>
-                 <th>Direccion</th>
-                 <th>Telefono</th>
+                 <th>Apellido</th>
+                  <th>Barrio</th>
+                  <th>Direccion</th>
+                  <th>Ciudad</th>
+                  <th>Telefono</th>
+                 <th>Correo</th>
               </thead>
               <tbody>                            
               </tbody>
             </table>
+           
+
           </div>
              </div>
               </div><!-- /.col -->
@@ -45,10 +50,9 @@ require 'header.php';
               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                  <div class="form-group">
                 <label>Tipo de documento</label>
-                <select id="tipo_documento" name="tipo_documento" class="form-control select2" style="width: 100%;">
-                  <option value="TI" selected="selected">TI</option>
-                  <option value="RUT">RUT</option>
-                  <option value="CEDULA">CC</option>
+                <select name="tipo_documento" id="tipo_documento" class="form-control">
+                   <option value="CC" selected="selected">CC</option>
+                  <option value="TI">TI</option>
                 </select>
               </div>
                </div>
@@ -67,24 +71,47 @@ require 'header.php';
                 </div>
                </div>
                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                 <div class="form-group">
-                  <label>Correo:</label>
-                  <input type="email" class="form-control" name="email" id="email"  placeholder="Ejemplo:OutJ66@gmail.com" >
+                   <div class="form-group">
+                  <label>Apellido:</label>
+                  <input type="text" class="form-control" name="apellido" id="apellido"  placeholder="Apellido del cliente" >
                 </div>
                </div>
              </div>
-              <div class="row">
-                <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+             <div class="row">
+              <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                   <label>Ciudad:</label>
+                  <input type="text" class="form-control" name="ciudad" id="ciudad"  placeholder="Direccion" >
+                   </div>
+                  </div>
+               <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                   <label>Barrio:</label>
+                <select name="barrio" id="barrio" class="form-control">
+                   <option value="1 DE MAYO" selected>1 DE MAYO</option>
+                  <option value="1 ENERO">1 ENERO</option>
+                </select>
+                   </div>
+                  </div>
+                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                    <label>Direccion:</label>
                   <input type="text" class="form-control" name="direccion" id="direccion"  placeholder="Direccion" >
                    </div>
                   </div>
+                 </div>
+              <div class="row">
                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <label>Telefono:</label>
                  <div class="form-group">
                     <input type="text" class="form-control" name="telefono" id="telefono"  placeholder="Telefono" >
                    </div>
+               </div>
+               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                 <div class="form-group">
+                  <label>Correo:</label>
+                  <input type="email" class="form-control" name="email" id="email"  placeholder="Ejemplo:OutJ66@gmail.com" >
+                </div>
                </div>
              </div>
           <!-- END DE FORMULARIO -->
@@ -105,8 +132,6 @@ require 'header.php';
         <?php
         require 'footer.php';
         ?>
-  <script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
-<script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
    <script type="text/javascript" src="scripts/persona.js"></script>
          
 

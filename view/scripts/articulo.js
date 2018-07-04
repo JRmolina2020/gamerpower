@@ -114,8 +114,6 @@ codigo: {
 			}
 		},
 
-           
-        
 		stock: {
 			row: '.col-xs-4',
 			message: 'Existencia del articulo invalida',
@@ -143,6 +141,7 @@ codigo: {
 				
 			}
 		},
+
 		imagen: {
                     validators: {
                         file: {
@@ -160,15 +159,18 @@ codigo: {
 				notEmpty: {
 					message: 'La descripcion de el articulo  es obligatorio y no puede estar vacio.'
 				},
-				stringLength: {
-					min: 3,
-					max: 20,
-					message: 'Minimo 3 caracteres y Maximo 20 '
-				},
 				
 			}
 		},
-		
+		idcategoria: {
+			message: 'Debe asignarle una categoria al articulo',
+			validators: {
+				notEmpty: {
+					message: 'Debe asignarle una categoria al articulo'
+				},
+			
+			}
+		},
 		
 	}
 })

@@ -3,7 +3,7 @@
 //IP DE LA PC SERVIDOR DE BASE DE DATOS
 define("DB_HOST", "localhost");
 // NOMBRE DE LA BD
-define("DB_NAME", "almacen");
+define("DB_NAME", "dbsistema");
 // NOMBRE DEL USUARIO DE LA BASE DE DATOS
 define("DB_USERNAME", "root");
 // CONTRASEÑA POR DEFECTO DEL USUARIO

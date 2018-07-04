@@ -5,7 +5,8 @@ var tablaprovedor;
  function init(){
 	limpiar();
 	guardaryeditar();
-	listarp();listar();
+	listarp();
+	listar();
 	
 	
 }
@@ -14,8 +15,10 @@ function limpiar()
 {
 	$("#idpersona").val("");
 	$("#nombre").val("");
+	$("#apellido").val("");
 	$("#num_documento").val("");
 	$("#direccion").val("");
+	$("#ciudad").val("");
 	$("#telefono").val("");
 	$("#email").val("");
 	// ___________________________________________
@@ -136,6 +139,24 @@ num_documento: {
 				},
 			}
 		},
+		apellido: {
+			message: 'Apellido del acliente invalido',
+			validators: {
+				notEmpty: {
+					message: 'El Apellido es obligatorio y no puede estar vacio.'
+				},
+				
+                    regexp: {
+                        regexp: /^[a-zA-Z\s]+$/,
+                        message: 'Ingrese un Apellido correcto,no se aceptan valores numericos'
+                    },
+				stringLength: {
+					min: 5,
+					max: 30,
+					message: 'Minimo 5 caracteres y Maximo 30 '
+				},
+			}
+		},
 		direccion: {
 			message: 'Direccion del cliente invalido',
 			validators: {
@@ -150,20 +171,7 @@ num_documento: {
 				},
 			}
 		},
-		tipo_documento: {
-			message: 'Tipo de documento  invalido',
-			validators: {
-				notEmpty: {
-					message: 'El Tipo de documento es obligatorio y no puede estar vacio.'
-				},
-				
-				stringLength: {
-					min: 2,
-					max: 10,
-					message: 'Minimo 2 caracteres y Maximo 10 '
-				},
-			}
-		},
+		
 		telefono: {
 			message: 'telefono del cliente invalido',
 			validators: {
@@ -254,8 +262,11 @@ function mostrar(idpersona)
 	   	$("#tipo_documento").val(data.tipo_documento).change();
 	   	$("#num_documento").val(data.num_documento);
 		$("#nombre").val(data.nombre);
+		$("#apellido").val(data.apellido);
+		$("#barrio").val(data.barrio).change();
 		$("#direccion").val(data.direccion);
 		$("#telefono").val(data.telefono);
+		$("#ciudad").val(data.ciudad);
 		$("#email").val(data.email);
 
 

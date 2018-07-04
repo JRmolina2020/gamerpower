@@ -80,6 +80,17 @@ $('#formulariocategoria') .bootstrapValidator({
 				
 			}
 		},
+		
+		
+		nombre: {
+			message: 'Nombre del acliente invalido',
+			validators: {
+				notEmpty: {
+					message: 'El nombre  es obligatorio y no puede estar vacio.'
+				}
+			}
+		},
+
 		descripcion: {
 			message: 'Descripcion invalida',
 			validators: {

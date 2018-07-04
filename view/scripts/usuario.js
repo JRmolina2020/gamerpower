@@ -17,6 +17,7 @@ function limpiar()
 	$("#telefono").val("");
 	$("#correo").val("");
 	$("#clave").val("");
+	$("#cargo").val("ADMIN");
 	// ___________________________________________
 	$("#imagenmuestra").attr("src","");
 	$("#imagenactual").val("");
@@ -286,7 +287,7 @@ function mostrar(idusuario)
 	   	$("#telefono").val(data.telefono);
 	   	$("#direccion").val(data.direccion);
 		$("#telefono").val(data.telefono);
-		$("#cargo").val(data.cargo);
+		$("#cargo").val(data.cargo).change();
 		$("#correo").val(data.correo);
 		$("#clave").val(data.clave);
 		$("#confirmPassword").val(data.clave);
@@ -341,7 +342,7 @@ function bloquear(idusuario,condicion)
 function cerrarformulario(){
 $("#cuadritoimagen").hide();
 $('#formulario').bootstrapValidator("resetForm",true); 
-limpiar()
+limpiar();
 }
 
 init();

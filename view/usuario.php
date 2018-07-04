@@ -47,7 +47,7 @@ require 'header.php';
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
               <div class="form-group">
               <label>Identifiacion:</label>
-              <input type="text" class="form-control" name="identi" id="identi" placeholder="Identifiacion">
+              <input type="text" class="form-control" name="identi" id="identi" placeholder="Identificacion">
             </div>      
                </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
@@ -80,20 +80,24 @@ require 'header.php';
                   <div class="form-group">
                   <label>Cargo:</label>
                   <select name="cargo" id="cargo" class="form-control">
-                    <option value="VENDEDOR">Vendedor</option>
-                    <option value="ADMIN">Administrador</option>
+                    <option value="ADMIN" selected>Administrador</option>
+                    <option value="Vendedor">Vendedor</option>
                   </select>
                 </div>
                </div>
              </div>
               <div class="row">
-                <div class="form-group col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                  <div class="form-group">
                  <label>Correo:</label>
                  <input type="email" class="form-control" name="correo" id="correo"  placeholder="Correo" >
+               </div>
                   </div>
-                  <div class="form-group col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
                  <label>Clave:</label>
                  <input type="password" class="form-control" name="clave" id="clave"  placeholder="Clave" >
+               </div>
                   </div>
                    <div class="form-group col-lg-4 col-md-6 col-sm-6 col-xs-12">
                   <div class="form-group">
@@ -103,18 +107,18 @@ require 'header.php';
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <label>Imagen:</label>
                  <div class="form-group">
                      <input type="file" class="form-control" name="imagen" id="imagen">
                    </div>
-                   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                 </div>
+                   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                   <input type="hidden" name="imagenactual" id="imagenactual">
                     <div name id="cuadritoimagen"> 
                      <img src="" width="150px" height="120px" id="imagenmuestra">
                     </div>
                 </div>
-               </div>
                 </div>
         
           <!-- END DE FORMULARIO -->

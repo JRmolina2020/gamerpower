@@ -68,22 +68,15 @@ require 'header.php';
                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="form-group">
                 <label>Descripcion</label>
-                <select id="descripcion" name="descripcion" class="form-control select2" style="width: 100%;">
-                  <option selected="selected">Alabama</option>
-                  <option>Alaska</option>
-                  <option>California</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
+                <textarea name="descripcion" id="descripcion" class="form-control" rows="3" required="required"></textarea>
               </div>
                </div>
              </div>
               <div class="row">
                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                  <label>Categoría:</label>
-                 <select id="idcategoria" name="idcategoria" class="form-control selectpicker" data-live-search="true" required></select>
+                 <select id="idcategoria" name="idcategoria" class="form-control selectpicker"  data-live-search="true" 
+                 data-style="btn-primary"></select>
                   </div>
                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                 <label>Imagen:</label>
@@ -96,7 +89,8 @@ require 'header.php';
              <div class="row">
                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                   <div id="print">
-                  <svg id="barcode"></svg>
+                  <svg id="barcode">
+                  </svg>
                 </div>
                </div>
                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
