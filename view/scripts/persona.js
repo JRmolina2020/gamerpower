@@ -7,6 +7,7 @@ var tablaprovedor;
 	guardaryeditar();
 	listarp();
 	listar();
+	ciudadvalidate();
 	
 	
 }
@@ -18,7 +19,6 @@ function limpiar()
 	$("#apellido").val("");
 	$("#num_documento").val("");
 	$("#direccion").val("");
-	$("#ciudad").val("");
 	$("#telefono").val("");
 	$("#email").val("");
 	// ___________________________________________
@@ -46,7 +46,6 @@ function listarp()
 				{
 
 			url: '../controller/persona.php?op=listarp',
-            type: "GET",
 					dataType : "json",						
 					error: function(e){
 						console.log(e.responseText);	
@@ -263,10 +262,9 @@ function mostrar(idpersona)
 	   	$("#num_documento").val(data.num_documento);
 		$("#nombre").val(data.nombre);
 		$("#apellido").val(data.apellido);
-		$("#barrio").val(data.barrio).change();
 		$("#direccion").val(data.direccion);
 		$("#telefono").val(data.telefono);
-		$("#ciudad").val(data.ciudad);
+		$("#ciudad").val(data.ciudad).change();
 		$("#email").val(data.email);
 
 
@@ -300,6 +298,27 @@ $('#formulario').bootstrapValidator("resetForm",true);
 limpiar()
 }
 
+function ciudadvalidate(){
+var vciudad = document.formulario.ciudad.value;
+
+if(vciudad=='VALLEDUPAR'){
+
+    var barrio = ["Mayales.", "1 de enero","Panama","URB.Galan","Los cocos","Manuelitas","San fernando","El pupo",
+    "Casimiro","Simon bolivar","V.miriam","El poblado","Mareigua","12 de octubre","Kennedy","Candelaria.S",
+    "Candelaria N","Sabanas","V.clara"];
+
+}else if (vciudad =='MEDELLIN'){
+	 var barrio = ["Santa Cruz","La isla ","El poblado","Villa Niza","La rosa","El Pomar","La cruz"
+	 ,"La onda","El Raizal","La salle","Oriente","Berlin","Sevilla","San pedro","Brasilia"];
+}
+ document.getElementById("barrio").length=0;
+  var select = document.getElementById("barrio"); //Seleccionamos el select
+    for(var i=0; i < barrio.length; i++){ 
+        var option = document.createElement("option"); //Creamos la opcion
+        option.innerHTML = barrio[i]; //Metemos el texto en la opción
+        select.appendChild(option); //Metemos la opción en el select
+    }
+}
 init();
 
 

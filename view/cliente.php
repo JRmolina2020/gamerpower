@@ -8,7 +8,7 @@ require 'header.php';
       <div class="col-md-12">
         <div class="box">
            <div class="box-header with-border">
-             <a class="btn btn-primary" data-toggle="modal" href='#modal'>Agregar</a>
+             <a class="btn btn-primary btn-sm" data-toggle="modal" href='#modal'>Agregar</a>
             <div class="box-tools pull-right">
             </div>
           </div>
@@ -81,18 +81,19 @@ require 'header.php';
               <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                    <label>Ciudad:</label>
-                  <input type="text" class="form-control" name="ciudad" id="ciudad"  placeholder="Direccion" >
+                  <select name="ciudad" id="ciudad" class="form-control" onchange="ciudadvalidate()">
+                  
+                    <option value="VALLEDUPAR">Valledupar</option>
+                    <option value="MEDELLIN" >Medellin</option>
+                 
+                  </select>
                    </div>
                   </div>
-               <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                   <label>Barrio:</label>
-                <select name="barrio" id="barrio" class="form-control">
-                   <option value="1 DE MAYO" selected>1 DE MAYO</option>
-                  <option value="1 ENERO">1 ENERO</option>
-                </select>
-                   </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                 <label>Barrio:</label>
+                 <select id="barrio" name="barrio" class="form-control"></select>
                   </div>
+
                  <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <div class="form-group">
                    <label>Direccion:</label>
@@ -132,8 +133,6 @@ require 'header.php';
         <?php
         require 'footer.php';
         ?>
-  <script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
-<script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
    <script type="text/javascript" src="scripts/persona.js"></script>
          
 

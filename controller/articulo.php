@@ -67,9 +67,16 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idarticulo.')">
+ 				"0"=>($_SESSION['cargo']=='ADMIN')?
+
+ 				'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idarticulo.')">
  				<i class="fa fa-pencil"></i></button>'.
  				' <button class="btn btn-danger  btn-xs" onclick="eliminar('.$reg->idarticulo.')">
+ 				<i class="fa fa-trash"></i></button>':
+ 				// _______________________________________________________________________
+ 				'<button class="btn btn-warning btn-xs" onclick="permiso()">
+ 				<i class="fa fa-pencil"></i></button>'.
+ 				' <button class="btn btn-danger  btn-xs" onclick="permiso()">
  				<i class="fa fa-trash"></i></button>',
  				"1"=>$reg->categoria,
  				"2"=>$reg->codigo,

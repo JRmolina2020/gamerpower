@@ -48,7 +48,8 @@ header('location:../');
 <section class="sidebar">
 <div class="user-panel">
 <div class="pull-left image">
-<img src="../files/usuario/avatar.png" class="img-circle" alt="User Image">
+<img src="../files/usuario/<?php echo $_SESSION['imagen']?>" class="img-circle" alt="User Image">
+
 </div>
 <div class="pull-left info">
 <p><?php echo $_SESSION['nombre']?></p>
@@ -61,38 +62,45 @@ header('location:../');
 
 <li class="treeview">
 <a href="#">
-<i class="fa  fa-desktop"></i> <span>Gestion</span>
+<i class="fa fa-fax"></i> <span>Gestion</span>
 <span class="pull-right-container">
 <i class="fa fa-angle-left pull-right"></i>
 </span>
 </a>
 <ul class="treeview-menu">
 <li><a href="cliente.php"><i class="fa fa-users"></i>Clientes</a></li>
-<li><a href="provedor.php"><i class="fa fa-users"></i>Provedores</a></li>
+<li><a href="provedor.php"><i class="fa fa-child"></i>Provedores</a></li>
 </ul>
 </li>
 <li class="treeview">
 <a href="#">
-<i class="fa  fa-desktop"></i> <span>Almacèn</span>
+<i class="fa fa-cart-plus"></i> <span>Almacèn</span>
 <span class="pull-right-container">
 <i class="fa fa-angle-left pull-right"></i>
 </span>
 </a>
 <ul class="treeview-menu">
-<li><a href="categoria.php"><i class="fa fa-users"></i>Categoria</a></li>
-<li><a href="Articulo.php"><i class="fa fa-users"></i>Productos</a></li>
+<li><a href="categoria.php"><i class="fa fa-server"></i>Categoria</a></li>
+<li><a href="Articulo.php"><i class="fa fa-laptop"></i>Productos</a></li>
 </ul>
 </li>
 <li class="treeview">
 <a href="#">
-<i class="fa  fa-desktop"></i> <span>Seguridad</span>
+<i class="fa fa-cogs"></i> <span>Seguridad</span>
 <span class="pull-right-container">
 <i class="fa fa-angle-left pull-right"></i>
 </span>
 </a>
 <ul class="treeview-menu">
+<?php if ($_SESSION['cargo']=='ADMIN'){
+echo'
 <li><a href="usuario.php"><i class="fa fa-users"></i>Usuarios</a></li>
-<li><a href="../controller/login/salir.php"><i class="fa fa-users"></i>Salir</a></li>
+<li><a href="../controller/login/salir.php"><i class="	fa fa-remove"></i>Salir</a></li>';
+}else{
+echo '
+<li><a><i class="fa fa-users"></i>Vendedor</a></li>
+<li><a href="../controller/login/salir.php"><i class="	fa fa-remove"></i>Salir</a></li>';
+}?>
 </ul>
 </li>
 </ul>

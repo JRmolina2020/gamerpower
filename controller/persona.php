@@ -1,6 +1,5 @@
 <?php 
 require_once "../model/Persona.php";
- 
 $persona=new Persona();
 $idpersona=isset($_POST["idpersona"])? limpiarCadena($_POST["idpersona"]):"";
 $tipo_persona=isset($_POST["tipo_persona"])? limpiarCadena($_POST["tipo_persona"]):"";
@@ -13,8 +12,6 @@ $direccion=isset($_POST["direccion"])? limpiarCadena($_POST["direccion"]):"";
 $ciudad=isset($_POST["ciudad"])? limpiarCadena($_POST["ciudad"]):"";
 $telefono=isset($_POST["telefono"])? limpiarCadena($_POST["telefono"]):"";
 $email=isset($_POST["email"])? limpiarCadena($_POST["email"]):"";
-
-
 switch ($_GET["op"]){
     case 'guardaryeditar':
         if (empty($idpersona)){
@@ -45,10 +42,17 @@ switch ($_GET["op"]){
         //Vamos a declarar un array
         $data= Array();
  
-        while ($reg=$rspta->fetch_object()){
+         while ($reg=$rspta->fetch_object()){
             $data[]=array(
-                "0"=>'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idpersona.')"><i class="fa fa-pencil"></i></button>'.
-                    ' <button class="btn btn-danger btn-xs" onclick="eliminar('.$reg->idpersona.')"><i class="fa fa-trash"></i></button>',
+                "0"=>($_SESSION['cargo']=='ADMIN')?
+                '<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idpersona.')">
+                <i class="fa fa-pencil"></i></button> '.
+            ' <button class="btn btn-danger btn-xs" onclick="eliminar('.$reg->idpersona.')">
+             <i class="fa fa-trash"></i></button> ':
+             '<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idpersona.')">
+             <i class="fa fa-pencil"></i></button> '.
+            '<button class="btn btn-danger btn-xs" onclick="permiso()">
+            <i class="fa fa-trash"></i></button> ',
                 "1"=>$reg->tipo_documento,
                 "2"=>$reg->num_documento,
                 "3"=>$reg->nombre,
@@ -68,8 +72,6 @@ switch ($_GET["op"]){
         echo json_encode($results);
  
     break;
-
-
     case 'listarp':
         $rspta=$persona->listarp();
         //Vamos a declarar un array
@@ -77,8 +79,15 @@ switch ($_GET["op"]){
  
         while ($reg=$rspta->fetch_object()){
             $data[]=array(
-                "0"=>'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idpersona.')"><i class="fa fa-pencil"></i></button>'.
-                    ' <button class="btn btn-danger btn-xs" onclick="eliminar('.$reg->idpersona.')"><i class="fa fa-trash"></i></button>',
+                "0"=>($_SESSION['cargo']=='ADMIN')?
+                '<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idpersona.')">
+                <i class="fa fa-pencil"></i></button> '.
+            ' <button class="btn btn-danger btn-xs" onclick="eliminar('.$reg->idpersona.')">
+             <i class="fa fa-trash"></i></button> ':
+             '<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idpersona.')">
+             <i class="fa fa-pencil"></i></button> '.
+            '<button class="btn btn-danger btn-xs" onclick="permiso()">
+            <i class="fa fa-trash"></i></button> ',
                 "1"=>$reg->tipo_documento,
                 "2"=>$reg->num_documento,
                 "3"=>$reg->nombre,

@@ -8,7 +8,10 @@ require 'header.php';
       <div class="col-md-12">
         <div class="box">
            <div class="box-header with-border">
-             <a class="btn btn-primary" data-toggle="modal" href='#modal'>Agregar</a>
+             <a class="btn btn-primary btn-sm" data-toggle="modal" href='#modal'>Agregar</a>
+             <a class="btn btn-warning btn-sm"  href='../reportes/rpt_articulo.php'>Reporte
+              <span class="fa fa-newspaper-o" aria-hidden="true"></span>
+             </a>
             <div class="box-tools pull-right">
             </div>
           </div>

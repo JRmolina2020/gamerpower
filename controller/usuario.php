@@ -28,7 +28,7 @@ if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['im
 				move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/usuario/" . $imagen);
 			}
 		}
-		$clave2 =md5($clave);
+		$clave2=md5(sha1($clave));
 //idusuario indenti ,nombre apellido direccion,telefono cargo,correo,clave,condicion,imagen
 		// 
 		if (empty($idusuario)){

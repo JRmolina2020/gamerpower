@@ -36,7 +36,7 @@ require 'header.php';
           </section><!-- /.content -->
         </div>
   <div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" data-keyboard=”false” tabindex=”-1″  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" role=”dialog”>
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-md">
     <div class="modal-content">
       
       <div class="modal-body">

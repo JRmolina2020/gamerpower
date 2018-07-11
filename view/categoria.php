@@ -10,7 +10,7 @@ require 'header.php';
       <div class="col-md-12">
         <div class="box">
           <div class="box-header with-border">
-            <a class="btn btn-primary" data-toggle="modal" href='#modalcategoria'>Agregar</a>
+            <a class="btn btn-primary btn-sm" data-toggle="modal" href='#modalcategoria'>Agregar</a>
             <div class="box-tools pull-right">
             </div>
           </div>
@@ -78,6 +78,7 @@ require 'header.php';
         require 'footer.php';
         ?>
         <script type="text/javascript" src="scripts/categoria.js"></script>
+        
       
         
          

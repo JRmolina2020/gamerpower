@@ -16,7 +16,7 @@
   if (is_int($str_p)) {
   $contra = '';
   }else{
-  $contra2 = md5($contra);
+  $contra2 = md5(sha1($contra));
   }
 //usuario2 and contra2
 
@@ -44,7 +44,7 @@
            
         }
 
-  if($correo == $usuario2 && $clave  == $contra2 && $cargo == 'VENDEDOR'){
+  if($correo == $usuario2 && $clave  == $contra2 && $cargo == 'Vendedor'){
          $_SESSION["idusuario"] = $idusuario; 
         $_SESSION["correo"] = $correo;
         $_SESSION["nombre"] = $nombre;
