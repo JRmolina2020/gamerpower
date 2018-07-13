@@ -114,33 +114,6 @@ codigo: {
 			}
 		},
 
-		stock: {
-			row: '.col-xs-4',
-			message: 'Existencia del articulo invalida',
-			validators: {
-				notEmpty: {
-					message: 'La existencia del articulo es obligatoria'
-				},
-				integer: {
-                        message: 'Digite un numero valido',
-                         thousandsSeparator: '',
-                            decimalSeparator: '.'
-                    },
-
-                    between: {
-                            min: 1,
-                            max: 1000,
-                            message: 'El rango debe ser igual a uno y menor a 1000'
-                        },
-
-				stringLength: {
-					min: 1,
-					max: 5,
-					message: 'Minimo 1 caracteres y Maximo 5  '
-				}
-				
-			}
-		},
 
 		imagen: {
                     validators: {

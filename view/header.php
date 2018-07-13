@@ -28,7 +28,7 @@ header('location:../');
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
 <link rel="stylesheet" type="text/css" href="../public/css/sweetalert2.min.css">
 </head>
-<body class="hold-transition skin-red sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
 <header class="main-header">
 <a href="../../index2.html" class="logo">
@@ -62,14 +62,32 @@ header('location:../');
 
 <li class="treeview">
 <a href="#">
-<i class="fa fa-fax"></i> <span>Gestion</span>
+<i class="fa fa-home"></i> <span>Inicio</span>
+</a>
+</li>
+
+<li class="treeview">
+<a href="#">
+<i class="fa fa-truck"></i> <span>Compras</span>
 <span class="pull-right-container">
 <i class="fa fa-angle-left pull-right"></i>
 </span>
 </a>
 <ul class="treeview-menu">
-<li><a href="cliente.php"><i class="fa fa-users"></i>Clientes</a></li>
-<li><a href="provedor.php"><i class="fa fa-child"></i>Provedores</a></li>
+<li><a href="ingreso.php"><i class="fa fa-shopping-cart "></i>Nueva compra</a></li>
+</ul>
+</li>
+
+<li class="treeview">
+<a href="#">
+<i class="fa fa-user"></i> <span>Contactos</span>
+<span class="pull-right-container">
+<i class="fa fa-angle-left pull-right"></i>
+</span>
+</a>
+<ul class="treeview-menu">
+<li><a href="cliente.php"><i class="fa fa-users "></i>Clientes</a></li>
+<li><a href="provedor.php"><i class="fa fa-user " ></i>Provedor</a></li>
 </ul>
 </li>
 <li class="treeview">
@@ -80,13 +98,15 @@ header('location:../');
 </span>
 </a>
 <ul class="treeview-menu">
-<li><a href="categoria.php"><i class="fa fa-server"></i>Categoria</a></li>
-<li><a href="Articulo.php"><i class="fa fa-laptop"></i>Productos</a></li>
+<li><a href="categoria.php"><i class="fa fa-server "></i>Categoria</a></li>
+<li><a href="Articulo.php"><i class="fa fa-apple " ></i>Productos</a></li>
+<li><a href="ingreso.php"><i class="fa fa-laptop " ></i>Ingresos</a></li>
+<li><a href="venta.php"><i class="fa fa-cc-mastercard " ></i>Ventas</a></li>
 </ul>
 </li>
 <li class="treeview">
 <a href="#">
-<i class="fa fa-cogs"></i> <span>Seguridad</span>
+<i class="fa fa-users"></i> <span>Vendedores</span>
 <span class="pull-right-container">
 <i class="fa fa-angle-left pull-right"></i>
 </span>

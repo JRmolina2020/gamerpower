@@ -8,10 +8,10 @@ require 'header.php';
       <div class="col-md-12">
         <div class="box">
            <div class="box-header with-border">
-             <a class="btn btn-primary btn-sm" data-toggle="modal" href='#modal'>Agregar</a>
-             <a class="btn btn-warning btn-sm"  href='../reportes/rpt_articulo.php'>Reporte
-              <span class="fa fa-newspaper-o" aria-hidden="true"></span>
+             <a class="btn btn-default btn-sm" data-toggle="modal" href='#modal'>Nuevo
+              <i class="fa fa-plus"></i>
              </a>
+             
             <div class="box-tools pull-right">
             </div>
           </div>
@@ -65,7 +65,7 @@ require 'header.php';
                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                   <div class="form-group">
                   <label>Existencias:</label>
-                  <input type="text" class="form-control" name="stock" id="stock"  placeholder="Cantidad de articulos" >
+                  <input type="text" class="form-control"  value="0" disabled name="stock" id="stock" >
                 </div>
                </div>
                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
