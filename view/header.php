@@ -61,7 +61,7 @@ header('location:../');
 <!-- ________________________________________ -->
 
 <li class="treeview">
-<a href="#">
+<a href="home.php">
 <i class="fa fa-home"></i> <span>Inicio</span>
 </a>
 </li>
@@ -77,6 +77,18 @@ header('location:../');
 <li><a href="ingreso.php"><i class="fa fa-shopping-cart "></i>Nueva compra</a></li>
 </ul>
 </li>
+<li class="treeview">
+<a href="#">
+<i class="fa fa-cc-visa"></i> <span>Ventas</span>
+<span class="pull-right-container">
+<i class="fa fa-angle-left pull-right"></i>
+</span>
+</a>
+<ul class="treeview-menu">
+<li><a href="venta.php"><i class="fa fa-cart-plus "></i>Nueva venta</a></li>
+</ul>
+</li>
+
 
 <li class="treeview">
 <a href="#">
@@ -100,10 +112,21 @@ header('location:../');
 <ul class="treeview-menu">
 <li><a href="categoria.php"><i class="fa fa-server "></i>Categoria</a></li>
 <li><a href="Articulo.php"><i class="fa fa-apple " ></i>Productos</a></li>
-<li><a href="ingreso.php"><i class="fa fa-laptop " ></i>Ingresos</a></li>
-<li><a href="venta.php"><i class="fa fa-cc-mastercard " ></i>Ventas</a></li>
 </ul>
 </li>
+<li class="treeview">
+<a href="#">
+<i class="fa fa-search"></i> <span>Consultar</span>
+<span class="pull-right-container">
+<i class="fa fa-angle-left pull-right"></i>
+</span>
+</a>
+<ul class="treeview-menu">
+<li><a href="consulta_venta_cliente.php"><i class="	fa fa-bar-chart" ></i>Ventas por fecha</a></li>
+<li><a href=""><i class="fa fa-bar-chart "></i>Ventas por cliente</a></li>
+</ul>
+</li>
+
 <li class="treeview">
 <a href="#">
 <i class="fa fa-users"></i> <span>Vendedores</span>

@@ -29,6 +29,9 @@ function limpiar()
 	 $("#total_compra").val("");
     $(".filas").remove();
     $("#total").html("0");
+    $("#neto").html("0");
+      $("#iva").html("0");
+       $("#totalfinal").html("0");
 
      //Obtenemos la fecha actual
     var now = new Date();
@@ -257,14 +260,31 @@ function modificarSubototales()
  
   }
   function calcularTotales(){
+     // declarando variables para las operaciones
+    // resultantes
     var sub = document.getElementsByName("subtotal");
     var total = 0.0;
+    var iva = 0.18;
+    var resuiva =0.0;
+    var totalcfinal=0.0;
  
     for (var i = 0; i <sub.length; i++) {
         total += document.getElementsByName("subtotal")[i].value;
     }
-    $("#total").html("$/. " + total);
+    // calculando el total primero
+    $("#total").html("S/. " + total);
     $("#total_compra").val(total);
+    // calculandoneto
+     $("#neto").html("S/. " + total);
+    $("#total_neto").val(total);
+// calculando iva de la compra
+    var resuiva = total*iva;
+    $("#iva").html("S/. " + resuiva);
+    $("#total_iva").val(resuiva);
+    // calculando el total final
+    var totalcfinal = total+resuiva;
+     $("#totalfinal").html("S/. " + totalcfinal);
+    $("#total_cfinal").val(totalcfinal);
     evaluar();
   }
  

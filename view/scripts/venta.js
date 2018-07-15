@@ -6,7 +6,8 @@ var tabla;
 	limpiar();
 	guardaryeditar();
 	listar();
-	 marcarImpuesto();
+  fecha_actual();
+	
 	
 	// cargamos los provedores
 	 $.post("../controller/venta.php?op=selectCliente", function(r){
@@ -27,19 +28,25 @@ function limpiar()
 {
 	$("#idcliente").val("");
 	$("#cliente").val("");
-	$("#serie_comprobante").val("");
 	$("#num_comprobante").val("");
 	$("#fecha_hora").val("");
-	$("#impuesto").val("0");
-	 $("#total_venta").val("0");
-    $(".filas").remove();
+   $("#total_venta").val("0");
+     $(".filas").remove();
     $("#total").html("0");
+     $("#neto").html("0");
+      $("#iva").html("0");
+       $("#total_final").html("0");
 
-    //Marcamos el primer tipo_documento
-    $("#tipo_comprobante").val("Boleta");
-    $("#tipo_comprobante").selectpicker('refresh');
+  
+}
 
-
+function fecha_actual(){
+    //Obtenemos la fecha actual
+    var now = new Date();
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+    $('#fecha_hora').val(today);
 }
 //Función listar
 function listar()
@@ -166,20 +173,14 @@ function mostrar(idventa)
     {
         data = JSON.parse(data);  
         $('.nav-tabs a[href="#agregarx"]').tab('show');
-         $("#btnGuardar").hide();
 
+         $("#btnGuardar").hide();
          $("#btnAgregarArt").hide();  
         $("#idcliente").val(data.idcliente);
         $("#idcliente").selectpicker('refresh');
-        $("#tipo_comprobante").val(data.tipo_comprobante);
-        $("#tipo_comprobante").selectpicker('refresh');
-        $("#serie_comprobante").val(data.serie_comprobante);
         $("#num_comprobante").val(data.num_comprobante);
         $("#fecha_hora").val(data.fecha);
-        $("#impuesto").val(data.impuesto);
         $("#idventa").val(data.idventa);
- 
-       
     });
  
     $.post("../controller/venta.php?op=listarDetalle&id="+idventa,function(r){
@@ -193,12 +194,12 @@ function mostrar(idventa)
 function anular(idventa)
 {
  swal({
-  title: "Desea desactivar este articulo!",
+  title: "Desea anular esta venta?!",
   type: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: 'SI, Desactivar!'
+  confirmButtonText: 'SI, Anular!'
 }).then((result) => {
   if (result.value) {
   	$.post("../controller/venta.php?op=anular", {idventa : idventa}, function(e){
@@ -212,26 +213,9 @@ function anular(idventa)
 
 //Declaración de variables necesarias para trabajar con las compras y
 //sus detalles
-var impuesto=18;
 var cont=0;
 var detalles=0;
-//$("#guardar").hide();
 $("#btnGuardar").hide();
-$("#tipo_comprobante").change(marcarImpuesto);
- 
-function marcarImpuesto()
-  {
-    var tipo_comprobante=$("#tipo_comprobante option:selected").text();
-    if (tipo_comprobante=='Factura')
-    {
-        $("#impuesto").val(impuesto); 
-    }
-    else
-    {
-        $("#impuesto").val("0"); 
-    }
-  }
- 
 
 
 function agregarDetalle(idarticulo,articulo,precio_venta)
@@ -243,7 +227,7 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     {
         var subtotal=cantidad*precio_venta;
         var fila='<tr class="filas" id="fila'+cont+'">'+
-        '<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
+        '<td><button type="button" class="btn btn-danger btn-xs" onclick="eliminarDetalle('+cont+')">x</button></td>'+
         '<td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
         '<td><input type="number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
         '<td><input type="number" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
@@ -270,9 +254,6 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     var prec = document.getElementsByName("precio_venta[]");
     var desc = document.getElementsByName("descuento[]");
     var sub = document.getElementsByName("subtotal");
-     var imp = document.getElementsByName("impuesto");
-     
- 
     for (var i = 0; i <cant.length; i++) {
         var inpC=cant[i];
         var inpP=prec[i];
@@ -282,29 +263,38 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
         document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
     }
     calcularTotales();
+
  
   }
   function calcularTotales(){
+    // declarando variables para las operaciones
+    // resultantes
     var sub = document.getElementsByName("subtotal");
     var total = 0.0;
+    var iva = 0.18;
+    var resuiva =0.0;
+    var totalcfinal=0.0;
  
     for (var i = 0; i <sub.length; i++) {
-        total += document.getElementsByName("subtotal")[i].value;
+     total += document.getElementsByName("subtotal")[i].value;
     }
+    // calculando el total primero
     $("#total").html("S/. " + total);
     $("#total_venta").val(total);
+    // calculado el neto de la venta
+    $("#neto").html("S/. " + total);
+    $("#total_neto").val(total);
+    // calculando iva de la compra
+    var resuiva = total*iva;
+    $("#iva").html("S/. " + resuiva);
+    $("#total_iva").val(resuiva);
+    // calculando el total final
+    var totalcfinal = total+resuiva;
+     $("#totalfinal").html("S/. " + totalcfinal);
+    $("#total_cfinal").val(totalcfinal);
     evaluar();
   }
- 
 
-
-
-
-
-
-
-
- 
   function evaluar(){
     if (detalles>0)
     {

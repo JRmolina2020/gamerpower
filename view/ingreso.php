@@ -9,8 +9,8 @@
           <div class="box">
            <div class="box-header with-border">
              <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#listadox">Listado</a></li>
-              <li><a data-toggle="tab" onclick="activar()" href="#agregarx">Agregar</a></li>
+              <li class="active"><a data-toggle="tab" href="#listadox">Historial</a></li>
+              <li><a data-toggle="tab" onclick="activar()" href="#agregarx">Comprar</a></li>
             </ul>
           </a>
         </div>
@@ -26,6 +26,9 @@
                   <th>Vendedor</th>
                   <th>Compra Nº</th>
                   <th>Total compra</th>
+                   <th>Neto</th>
+                    <th>Iva 18%</th>
+                     <th>Total final</th>
                   <th>Estado</th>
                 </thead>
                 <tbody>                            
@@ -85,13 +88,25 @@
                         <th>Precio Venta</th>
                         <th>Subtotal</th>
                       </thead>
-                      <tfoot>
-                        <th>TOTAL</th>
+                        <tfoot>
+                        <th>
+                        TOTAL
+                        <br>
+                        $NETO<br>
+                        IVA 18%<br>
+                        TOTAL COMPRA
+
+                        </th>
                         <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th><h4 id="total">S/. 0.00</h4><input type="hidden" name="total_compra" id="total_compra"></th> 
+                        <th>
+                          <h5 id="total">$/. 0.000</h5><input type="hidden" name="total_compra" id="total_compra">
+                          <h5 id="neto">$/. 0.000</h5><input type="hidden" name="total_neto" id="total_neto">
+                          <h5 id="iva">$/. 0.000</h5><input type="hidden" name="total_iva" id="total_iva">
+                          <h5 id="totalfinal">S/. 0.000</h5><input type="hidden" name="total_cfinal" id="total_cfinal">
+                        </th> 
                       </tfoot>
                       <tbody>
                       </tbody>
