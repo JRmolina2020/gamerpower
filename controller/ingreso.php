@@ -54,7 +54,13 @@
 
         while ($reg = $rspta->fetch_object())
         {
-            echo '<tr class="filas"><td></td><td>'.$reg->nombre.'</td><td>'.$reg->cantidad.'</td><td>'.$reg->precio_compra.'</td><td>'.$reg->precio_venta.'</td><td>'.$reg->precio_compra*$reg->cantidad.'</td></tr>';
+            echo '<tr class="filas">
+            <td></td>
+            <td>'.$reg->nombre.'</td>
+            <td>'.$reg->cantidad.'</td>
+            <td>'.$reg->precio_compra.'</td>
+            <td>'.$reg->precio_venta.'</td>
+            <td>'.$reg->precio_compra*$reg->cantidad.'</td></tr>';
             $total=$total+($reg->precio_compra*$reg->cantidad);
             $neto = $total;
             $ivar =$reg->iva;

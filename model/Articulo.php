@@ -67,6 +67,14 @@ Class Articulo
 		return ejecutarConsulta($sql);		
 	}
 
+    //Implementar un método para listar los registros
+	public function listardiez()
+	{
+		$sql="SELECT distinct(a.codigo),a.idarticulo,a.idcategoria,a.codigo,a.nombre,a.stock,(SELECT precio_venta FROM detalle_ingreso WHERE idarticulo=a.idarticulo order by iddetalle_ingreso desc limit 0,1) as precio_venta,a.descripcion,a.imagen,a.condicion FROM articulo a inner join detalle_ingreso d on d.idarticulo = a.idarticulo WHERE a.condicion='1' order by d.iddetalle_ingreso desc LIMIT 4";
+		return ejecutarConsulta($sql);		
+	}
+
+
 
 	
   //Implementar un método para listar los registros activos, su último precio y el stock (vamos a unir con el último registro de la tabla detalle_ingreso)

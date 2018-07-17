@@ -54,8 +54,9 @@ Class Venta
  
     public function listarDetalle($idventa)
     {
-        $sql="SELECT dv.idventa,dv.idarticulo,a.nombre,dv.cantidad,dv.precio_venta,dv.descuento,v.neto,v.iva,v.total_final,(dv.cantidad*dv.precio_venta-dv.descuento) as subtotal  FROM detalle_venta dv inner join articulo a on dv.idarticulo=a.idarticulo 
-        inner join venta v on v.idventa =  dv.idventa
+        $sql="SELECT dv.idventa,dv.idarticulo,a.nombre,dv.cantidad,dv.precio_venta,dv.descuento,v.neto,v.iva,v.total_final,
+        (dv.cantidad*dv.precio_venta-dv.descuento) as subtotal  FROM detalle_venta dv inner join articulo a on dv.idarticulo=a.idarticulo 
+        inner join venta v on v.idventa = dv.idventa
         where dv.idventa='$idventa'";
         return ejecutarConsulta($sql);
     }

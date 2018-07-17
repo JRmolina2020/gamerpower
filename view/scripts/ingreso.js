@@ -19,6 +19,10 @@ var tabla;
 function activar(){
 listarArticulos();
  $("#btnGuardar").hide();
+ $("#btnAgregarArt").show();
+
+
+
 }
 //Función limpiar
 function limpiar()

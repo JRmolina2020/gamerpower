@@ -58,7 +58,7 @@ switch ($_GET["op"]){
         $total=$total+($reg->precio_venta*$reg->cantidad-$reg->descuento);
         $neto = $reg->neto;
         $iva = $reg->iva;
-          $total_final = $reg->total_final;
+        $total_final = $reg->total_final;
 
     }
     echo '<tfoot>

@@ -84,6 +84,8 @@ require 'header.php';
                         <th>Precio unitario</th>
                         <th>Descuento</th>
                         <th>Subtotal</th>
+
+                        
                       </thead>
                         <tfoot>
                         <th>
@@ -108,10 +110,6 @@ require 'header.php';
                       </tbody>
                     </table>
                   </div>
-
-
-
-
                 <div id="guardar" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
 

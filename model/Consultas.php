@@ -35,6 +35,35 @@ Class Consultas
         $sql="SELECT CONCAT(DAY(fecha_hora),'-',MONTH(fecha_hora)) as fecha,SUM(total_compra) as total FROM ingreso GROUP by fecha_hora ORDER BY fecha_hora DESC limit 0,10";
         return ejecutarConsulta($sql);
     }
+    // consulta para establecer el total de factura emitidas en un dia
+
+     public function facturasventas_dia_actual()
+    {
+        $sql="SELECT  IFNULL (count(idventa),0) as totalf from venta WHERE DATE(fecha_hora)=curdate() ";
+        return ejecutarConsulta($sql);
+    }
+
+    //total de compras o ingresos de un dia
+  public function facturascompras_dia_actual()
+    {
+        $sql="SELECT  IFNULL (count(idingreso),0) as totali from ingreso WHERE DATE(fecha_hora)=curdate() ";
+        return ejecutarConsulta($sql);
+    }
+      
+ // total de clientes registrados
+  public function total_clientes()
+    {
+        $sql="SELECT  IFNULL (count(idpersona),0) as sumcli from persona WHERE tipo_persona='cliente'";
+        return ejecutarConsulta($sql);
+    }
+
+    // total de usuarios registrados
+     public function total_provedores()
+    {
+        $sql="SELECT  IFNULL (count(idpersona),0) as sump from persona WHERE tipo_persona='provedor'";
+        return ejecutarConsulta($sql);
+    }
+ 
  
     public function ventasultimos_12meses()
     {

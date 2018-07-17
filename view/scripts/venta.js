@@ -220,7 +220,7 @@ $("#btnGuardar").hide();
 
 function agregarDetalle(idarticulo,articulo,precio_venta)
   {
-    var cantidad=1;
+    var cantidad=1; 
     var descuento=0;
  
     if (idarticulo!="")
