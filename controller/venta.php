@@ -75,7 +75,7 @@ switch ($_GET["op"]){
     <h5 id="total">$/.'.$total.'</h5><input type="hidden" name="total_venta" id="total_venta">
     <h5 id="neto">S/.'.$neto.'</h4><input type="hidden" name="total_neto" id="total_neto">
     <h5 id="iva">S/.'.$iva.'</h4><input type="hidden" name="total_iva" id="total_iva">
-    <h5 id="total_final">S/.'.$total_final.'</h4><input type="hidden" name="total_final" id="total_final>
+    <h5 id="totalfinal">S/.'.$total_final.'</h4><input type="hidden" name="total_final" id="total_final>
     </th> 
     
     </tfoot>';

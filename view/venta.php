@@ -62,7 +62,7 @@ require 'header.php';
                   </div>
                     <div class="form-group col-lg-2 col-md-3 col-sm-12 col-xs-12">
                     <label>Compra Nº</label>
-                  <input type="text" class="form-control" name="num_comprobante" id="num_comprobante" maxlength="10" placeholder="Número" required="">
+                  <input type="text" class="form-control" name="num_comprobante" id="num_comprobante" placeholder="Número" required="">
                 </div>
                   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <label>Agregar Productos</label>
@@ -84,8 +84,6 @@ require 'header.php';
                         <th>Precio unitario</th>
                         <th>Descuento</th>
                         <th>Subtotal</th>
-
-                        
                       </thead>
                         <tfoot>
                         <th>
@@ -93,7 +91,7 @@ require 'header.php';
                         <br>
                         $NETO<br>
                         IVA 18%<br>
-                        TOTAL COMPRA
+                        TOTAL VENTA
                         </th>
                         <th></th>
                         <th></th>
@@ -103,7 +101,7 @@ require 'header.php';
                           <h5 id="total">$/. 0.000</h5><input type="hidden" name="total_venta" id="total_venta">
                           <h5 id="neto">$/. 0.000</h5><input type="hidden" name="total_neto" id="total_neto">
                           <h5 id="iva">$/. 0.000</h5><input type="hidden" name="total_iva" id="total_iva">
-                          <h5 id="totalfinal">S/. 0.000</h5><input type="hidden" name="total_cfinal" id="total_cfinal">
+                          <h5 id="totalfinal">$/. 0.000</h5><input type="hidden" name="total_cfinal" id="total_cfinal">
                         </th> 
                       </tfoot>
                       <tbody>

@@ -20,13 +20,15 @@ Class Consultas
  
     public function totalcomprahoy()
     {
-        $sql="SELECT IFNULL(SUM(total_final),0) as total_final FROM ingreso WHERE DATE(fecha_hora)=curdate()";
+        $sql="SELECT IFNULL(SUM(total_final),0) as total_final FROM ingreso WHERE DATE(fecha_hora)=curdate()
+         and estado ='Aceptado'";
         return ejecutarConsulta($sql);
     }
  
     public function totalventahoy()
     {
-        $sql="SELECT IFNULL(SUM(total_final),0) as total_final FROM venta WHERE DATE(fecha_hora)=curdate()";
+        $sql="SELECT IFNULL(SUM(total_final),0) as total_final FROM venta WHERE DATE(fecha_hora)=curdate() 
+        and estado ='Aceptado' ";
         return ejecutarConsulta($sql);
     }
 

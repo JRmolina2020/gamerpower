@@ -2,14 +2,10 @@
 var tabla;
 
  function init(){
-	
-	limpiar();
 	guardaryeditar();
 	listar();
-  fecha_actual();
-	
-	
-	// cargamos los provedores
+ 
+	// cargamos el objecto select con nuestros clientes
 	 $.post("../controller/venta.php?op=selectCliente", function(r){
 	 $("#idcliente").html(r);
 	 $('#idcliente').selectpicker('refresh');
@@ -22,24 +18,23 @@ function activar(){
 listarArticulos();
  $("#btnGuardar").hide();
  $("#btnAgregarArt").show();
+fecha_actual();
 }
-//Función limpiar
+//Función limpiar 
 function limpiar()
 {
 	$("#idcliente").val("");
+  $("#idventa").val("");
 	$("#cliente").val("");
 	$("#num_comprobante").val("");
-	$("#fecha_hora").val("");
-   $("#total_venta").val("0");
-     $(".filas").remove();
-    $("#total").html("0");
-     $("#neto").html("0");
-      $("#iva").html("0");
-       $("#total_final").html("0");
-
-  
+  $(".filas").remove();
+  $("#total").html("0.000");
+  $("#neto").html("0.000");
+  $("#iva").html("0.000");
+  $("#totalfinal").html("0.000");
 }
 
+// obtener la fecha actual de nuestro sistema
 function fecha_actual(){
     //Obtenemos la fecha actual
     var now = new Date();
@@ -81,7 +76,8 @@ function listar()
 }
 
 
-//Función ListarArticulos
+//Función ListarArticulos en el modal para acceder a los productos
+//y realizar la venta
 function listarArticulos()
 {
     tabla=$('#tblarticulos').dataTable(
@@ -114,24 +110,20 @@ function guardaryeditar(e)
 $('#formulario') .bootstrapValidator({
 	message: 'This value is not valid',
 	fields: {
-		nombre: {
-			message: 'Nombre del aritculo invalido',
+		num_comprobante: {
+			message: 'Numero de comprobante invalido',
 			validators: {
 				notEmpty: {
-					message: 'El Nombre de el articulo  es obligatorio y no puede estar vacio.'
+					message: 'Este campo es requerido'
 				},
 				stringLength: {
 					min: 3,
-					max: 20,
-					message: 'Minimo 3 caracteres y Maximo 20 '
+					max: 5,
+					message: 'minimo 3 caracteres maximo 5'
 				},
 				
 			}
 		},
-
-		
-		
-		
 	}
 })
 
@@ -166,14 +158,15 @@ $('#formulario') .bootstrapValidator({
 	});
 }
 
-
+// Mostrar la informacion de la venta realizada,mostramos primero que todo
+// los datos del cliente a quien se le hizo la venta y los productos que llevo
 function mostrar(idventa)
 {
     $.post("../controller/venta.php?op=mostrar",{idventa : idventa}, function(data, status)
     {
         data = JSON.parse(data);  
         $('.nav-tabs a[href="#agregarx"]').tab('show');
-
+       
          $("#btnGuardar").hide();
          $("#btnAgregarArt").hide();  
         $("#idcliente").val(data.idcliente);
@@ -182,15 +175,16 @@ function mostrar(idventa)
         $("#fecha_hora").val(data.fecha);
         $("#idventa").val(data.idventa);
     });
- 
+ // en esta parte es donde mostramos los detalles de los productos llevados por el cliente
     $.post("../controller/venta.php?op=listarDetalle&id="+idventa,function(r){
             $("#detalles").html(r);
     }); 
 }
 
  
-//Función para desactivar registros
-
+//Función para anular una venta,por x o y razon, cada venta anulada obtendra en su
+//fuente de dato un atributo anulado el cual no se sumara a la venta total del dia o
+//inventario
 function anular(idventa)
 {
  swal({
@@ -209,15 +203,11 @@ function anular(idventa)
   }
 })
 }
-
-
 //Declaración de variables necesarias para trabajar con las compras y
 //sus detalles
 var cont=0;
 var detalles=0;
 $("#btnGuardar").hide();
-
-
 function agregarDetalle(idarticulo,articulo,precio_venta)
   {
     var cantidad=1; 
@@ -228,10 +218,10 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
         var subtotal=cantidad*precio_venta;
         var fila='<tr class="filas" id="fila'+cont+'">'+
         '<td><button type="button" class="btn btn-danger btn-xs" onclick="eliminarDetalle('+cont+')">x</button></td>'+
-        '<td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
-        '<td><input type="number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
-        '<td><input type="number" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
-        '<td><input type="number" name="descuento[]" value="'+descuento+'"></td>'+
+        '<td><input type="hidden"  name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
+        '<td><input type="number" class="form-control" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
+        '<td><input type="number" disabled class="form-control" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
+        '<td><input type="number" class="form-control" name="descuento[]" value="'+descuento+'"></td>'+
         '<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
         '<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
         '</tr>';
@@ -263,9 +253,9 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
         document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
     }
     calcularTotales();
-
- 
   }
+
+
   function calcularTotales(){
     // declarando variables para las operaciones
     // resultantes
@@ -311,13 +301,15 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     $("#fila" + indice).remove();
     calcularTotales();
     detalles=detalles-1;
-    evaluar()
+    evaluar();
   }
 
 function cerrarformulario(){
+ limpiar();
 $('#formulario').bootstrapValidator("resetForm",true); 
 $('.nav-tabs a[href="#listadox"]').tab('show');
-limpiar();
+
+
 }
 init();
 

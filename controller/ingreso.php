@@ -54,20 +54,22 @@
 
         while ($reg = $rspta->fetch_object())
         {
-            echo '<tr class="filas">
+            echo '<tr class="filas table-striped">
             <td></td>
-            <td>'.$reg->nombre.'</td>
+            <td >'.$reg->nombre.'</td>
             <td>'.$reg->cantidad.'</td>
             <td>'.$reg->precio_compra.'</td>
             <td>'.$reg->precio_venta.'</td>
-            <td>'.$reg->precio_compra*$reg->cantidad.'</td></tr>';
+            <td>'.$reg->precio_compra*$reg->cantidad.'</td>
+            </tr>';
             $total=$total+($reg->precio_compra*$reg->cantidad);
             $neto = $total;
             $ivar =$reg->iva;
             $tot =$reg->total_final;
 
         }
-        echo '<tfoot>
+        echo 
+        '<tfoot>
          <th>
          TOTAL
         <br>
@@ -79,10 +81,10 @@
         <th></th>
         <th></th>
         <th>
-        <h5 id="total">S/.'.$total.'</h4><input type="hidden" name="total_compra" id="total_compra">
-        <h5 id="neto">S/.'.$neto.'</h4><input type="hidden" name="total_neto" id="total_neto">
-        <h5 id="iva">S/.'.$ivar.'</h4><input type="hidden" name="total_iva" id="total_iva">
-        <h5 id="totalfinal">S/.'.$tot.'</h4><input type="hidden" name="total_cfinal" id="total_cfinal">
+        <h5 style="color:#298A08"  id="total">S/.'.$total.'</h4><input type="hidden" name="total_compra" id="total_compra">
+        <h5 style="color:#298A08"  id="neto">S/.'.$neto.'</h4><input type="hidden" name="total_neto" id="total_neto">
+        <h5 style="color:#298A08"  id="iva">S/.'.$ivar.'</h4><input type="hidden" name="total_iva" id="total_iva">
+        <h5  style="color:#DF0101" id="totalfinal">S/.'.$tot.'</h4><input type="hidden" name="total_cfinal" id="total_cfinal">
         </th> 
         </tfoot>';
         break;

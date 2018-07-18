@@ -220,20 +220,19 @@ $("#btnGuardar").hide();
 function agregarDetalle(idarticulo,articulo)
   {
     var cantidad=1;
-    var precio_compra=1;
+    var precio_compra=1.0;
     var precio_venta=1;
  
     if (idarticulo!="")
     {
-        var subtotal=cantidad*precio_compra;
+        var subtotal=parseFloat(cantidad*precio_compra);
         var fila='<tr class="filas" id="fila'+cont+'">'+
         '<td><button type="button" class="btn btn-danger btn-xs" onclick="eliminarDetalle('+cont+')">x</button></td>'+
         '<td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
-        '<td><input type="number" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
-        '<td><input type="number" name="precio_compra[]" id="precio_compra[]" value="'+precio_compra+'"></td>'+
-        '<td><input type="number" name="precio_venta[]" value="'+precio_venta+'"></td>'+
-        '<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
-        '<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
+        '<td><input type="number" onchange="modificarSubototales()"   class="form-control" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
+        '<td><input type="number" onchange="modificarSubototales()"  class="form-control" name="precio_compra[]" id="precio_compra[]" value="'+precio_compra+'"></td>'+
+        '<td><input type="number" onchange="modificarSubototales()"  class="form-control" name="precio_venta[]" value="'+precio_venta+'"></td>'+
+        '<td><span name="subtotal" STYLE="color: red; font-size: 20pt" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
         '</tr>';
         cont++;
         detalles=detalles+1;
@@ -261,8 +260,32 @@ function modificarSubototales()
         document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
     }
     calcularTotales();
+    validar();
  
   }
+
+  function validar(){
+    var rango = 3;
+    var precom = document.getElementsByName("precio_compra[]");
+
+
+ for (var i = 0, j = precom.length; i < j; i++) 
+ {
+  var p_comprar = precom[i].value.length;
+   if (p_comprar > "6"){
+   document.getElementById("precio_compra[]").style.color = "#C13E00";
+  
+}else{
+  document.getElementById("precio_compra[]").style.color = "#00C10C";
+
+}
+document.getElementById("precio_compra[]").style.fontWeight = "900";
+   }
+}
+
+ 
+
+
   function calcularTotales(){
      // declarando variables para las operaciones
     // resultantes
