@@ -96,6 +96,29 @@ if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['im
 
 	break;
 
-	
+	case 'verificar':
+        $logina=$_POST['logina'];
+        $clavea=$_POST['clavea'];
+ 
+        //Hash SHA256 en la contraseña
+        $clavehash=md5(sha1($clavea));
+ 
+        $rspta=$usuario->verificar($logina, $clavehash);
+ 
+        $fetch=$rspta->fetch_object();
+ 
+        if (isset($fetch))
+        {
+            //Declaramos las variables de sesión
+            $_SESSION['idusuario']=$fetch->idusuario;
+            $_SESSION['nombre']=$fetch->nombre;
+            $_SESSION['correo']=$fetch->correo;
+            $_SESSION['cargo']=$fetch->cargo;
+             $_SESSION['imagen']=$fetch->imagen;
+        }
+        
+ 
+echo json_encode($fetch);
+break;
 }
 ?>

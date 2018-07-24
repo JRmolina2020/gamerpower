@@ -63,6 +63,12 @@ Class Usuario
 		return ejecutarConsulta($sql);		
 	}
 
+	 public function verificar($login,$clave)
+    {
+        $sql="SELECT idusuario,nombre,identi,telefono,correo,cargo,imagen FROM usuario WHERE correo='$login' AND clave='$clave' AND condicion='1'"; 
+        return ejecutarConsulta($sql);  
+    }
+
 }
 
 ?>

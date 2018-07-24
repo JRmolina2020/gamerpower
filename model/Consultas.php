@@ -59,14 +59,23 @@ Class Consultas
         return ejecutarConsulta($sql);
     }
 
-    // total de usuarios registrados
+    // total de provedores registrados
      public function total_provedores()
     {
         $sql="SELECT  IFNULL (count(idpersona),0) as sump from persona WHERE tipo_persona='provedor'";
         return ejecutarConsulta($sql);
     }
- 
- 
+
+     // los 5 productos mas vendidos
+     public function productos_mas_vendidos()
+    {
+        $sql="SELECT a.nombre as producto,sum(d.cantidad) as comprado,sum(total_venta) as total from articulo a inner join detalle_venta d on d.idarticulo= a.idarticulo inner join venta v on v.idventa = d.idventa 
+            WHERE v.estado='Aceptado'
+        GROUP by producto order by total desc Limit 0,5 ";
+        return ejecutarConsulta($sql);
+    }
+
+    
     public function ventasultimos_12meses()
     {
         $sql="SELECT DATE_FORMAT(fecha_hora,'%M') as fecha,SUM(total_venta) as total FROM venta GROUP by MONTH(fecha_hora) ORDER BY fecha_hora DESC limit 0,10";

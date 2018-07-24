@@ -94,7 +94,46 @@ require_once'../controller/home.php';
   </div>
           <!-- PRODUCT LIST -->
           <div class="row">
-            <div class="col-lg-8"></div>
+            <div class="col-lg-8">
+              <!-- Productos mas vendidos CARD -->
+                <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Los 5 Productos mas vendidos</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <table class="table table-striped">
+                <tr>
+                  <th>Producto</th>
+                  <th style="width: 40px">Vendidos</th>
+                  <th>Progreso</th>
+                  <th style="width: 40px">Total</th>
+                </tr>
+                <tr>
+          <?php
+           while ($regp=$rsptapm->fetch_object()){
+            $nombrep = $regp->producto;
+            $comprado = $regp->comprado;
+            $totalcp = $regp->total;
+             ?>
+                  <td><?php echo $nombrep; ?></td>
+                  <td><?php echo $comprado; ?></td>
+                  <td>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar progress-bar-danger" 
+                      style="width:<?php echo $comprado;?>%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-green"><?php echo $totalcp; ?></span></td>
+                </tr>
+                <?php }?>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+              <!-- END productos mas vendidos CARDS -->
+            </div>
             <div class="col-lg-4">
                <div class="box box-primary">
             <div class="box-header with-border">

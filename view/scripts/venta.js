@@ -220,7 +220,7 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
         '<td><button type="button" class="btn btn-danger btn-xs" onclick="eliminarDetalle('+cont+')">x</button></td>'+
         '<td><input type="hidden"  name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
         '<td><input type="number" class="form-control" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
-        '<td><input type="number" disabled class="form-control" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
+        '<td><input type="number"  class="form-control" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
         '<td><input type="number" class="form-control" name="descuento[]" value="'+descuento+'"></td>'+
         '<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
         '<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+

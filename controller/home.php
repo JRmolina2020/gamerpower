@@ -53,11 +53,14 @@ while ($regfechav= $ventas12->fetch_object()) {
 $fechasv=substr($fechasv, 0, -1);
 $totalesv=substr($totalesv, 0, -1);
 
-// consulta ultimos productos ingresados
-
+// consulta de los  ultimos productos ingresados
 	  require_once"../model/Articulo.php";
 	    $articulo=new Articulo();
 		$rsptaA=$articulo->listardiez();
+
+    require_once"../model/Consultas.php";
+      $consulta=new Consultas();
+    $rsptapm=$consulta->productos_mas_vendidos();
 
  	
 

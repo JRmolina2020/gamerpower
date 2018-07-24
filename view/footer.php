@@ -21,8 +21,6 @@
 <script src="../public/js/bootbox.min.js"></script> 
 <script src="../public/js/bootstrap-select.min.js"></script>  
 <script type="text/javascript" src="scripts/permiso.js"></script>
-
-
 <!-- boostrap validator -->
 <script type="text/javascript" src="../public/js/validator.js"> </script>
 <!-- end boostrap validator -->

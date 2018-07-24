@@ -26,6 +26,7 @@ header('location:../');
 <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
 <!-- VALIDATOR -->
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
+<!-- alert -->
 <link rel="stylesheet" type="text/css" href="../public/css/sweetalert2.min.css">
 </head>
 <body class="hold-transition skin-green sidebar-mini">

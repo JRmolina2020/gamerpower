@@ -1,0 +1,10 @@
+body{
+background: url('../images/fondo_login.jpg')no-repeat center top !Important;
+background-size: cover!Important;
+height: 100vh!Important;
+-webkit-box-orient: vertical;
+-webkit-box-direction: normal;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column; 
+}    
