@@ -4,7 +4,8 @@ var tabla;
  function init(){
 	guardaryeditar();
 	listar();
- 
+  fecha_actual();
+  listarArticulos();
 	// cargamos el objecto select con nuestros clientes
 	 $.post("../controller/venta.php?op=selectCliente", function(r){
 	 $("#idcliente").html(r);
@@ -15,10 +16,8 @@ var tabla;
 }
 
 function activar(){
-listarArticulos();
  $("#btnGuardar").hide();
  $("#btnAgregarArt").show();
-fecha_actual();
 }
 //Función limpiar 
 function limpiar()
@@ -149,7 +148,7 @@ $('#formulario') .bootstrapValidator({
 	    		timer: 1500
 	    	});  
 	    	limpiar();	
-	    	$('.nav-tabs a[href="#listadox"]').tab('show');
+	    	$('.nav-tabs a:last').tab('show');
 	    	  $('#formulario').bootstrapValidator("resetForm",true); 
 	          listar();
 	    }
@@ -157,7 +156,6 @@ $('#formulario') .bootstrapValidator({
 	});
 	});
 }
-
 // Mostrar la informacion de la venta realizada,mostramos primero que todo
 // los datos del cliente a quien se le hizo la venta y los productos que llevo
 function mostrar(idventa)
@@ -165,10 +163,10 @@ function mostrar(idventa)
     $.post("../controller/venta.php?op=mostrar",{idventa : idventa}, function(data, status)
     {
         data = JSON.parse(data);  
-        $('.nav-tabs a[href="#agregarx"]').tab('show');
-       
          $("#btnGuardar").hide();
-         $("#btnAgregarArt").hide();  
+         $('#cubitoagregar').hide();
+          $('.nav-tabs a:first').tab('show')
+        //------------------------------------- 
         $("#idcliente").val(data.idcliente);
         $("#idcliente").selectpicker('refresh');
         $("#num_comprobante").val(data.num_comprobante);
@@ -217,13 +215,12 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     {
         var subtotal=cantidad*precio_venta;
         var fila='<tr class="filas" id="fila'+cont+'">'+
-        '<td><button type="button" class="btn btn-danger btn-xs" onclick="eliminarDetalle('+cont+')">x</button></td>'+
+        '<td><button type="button" class="btn btn-danger btn-xs" onclick="eliminarDetalle('+cont+')"><i class="fa fa-trash  btn-flat margi"></i></button></td>'+
         '<td><input type="hidden"  name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td>'+
-        '<td><input type="number" class="form-control" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
-        '<td><input type="number"  class="form-control" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
-        '<td><input type="number" class="form-control" name="descuento[]" value="'+descuento+'"></td>'+
-        '<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
-        '<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
+        '<td><input type="number"  class="form-control"  onchange="modificarSubototales()" name="cantidad[]" id="cantidad[]" value="'+cantidad+'"></td>'+
+        '<td><input type="number"  class="form-control"  onchange="modificarSubototales()" name="precio_venta[]" id="precio_venta[]" value="'+precio_venta+'"></td>'+
+        '<td><input type="number" class="form-control"  onchange="modificarSubototales()" name="descuento[]" value="'+descuento+'"></td>'+
+        '<td><span name="subtotal"  STYLE="color: red; font-size: 20pt" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
         '</tr>';
         cont++;
         detalles=detalles+1;
@@ -235,9 +232,6 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
         alert("Error al ingresar el detalle, revisar los datos del artículo");
     }
   }
-
-
-
  function modificarSubototales()
   {
     var cant = document.getElementsByName("cantidad[]");
@@ -271,17 +265,6 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
     // calculando el total primero
     $("#total").html("S/. " + total);
     $("#total_venta").val(total);
-    // calculado el neto de la venta
-    $("#neto").html("S/. " + total);
-    $("#total_neto").val(total);
-    // calculando iva de la compra
-    var resuiva = total*iva;
-    $("#iva").html("S/. " + resuiva);
-    $("#total_iva").val(resuiva);
-    // calculando el total final
-    var totalcfinal = total+resuiva;
-     $("#totalfinal").html("S/. " + totalcfinal);
-    $("#total_cfinal").val(totalcfinal);
     evaluar();
   }
 
@@ -307,9 +290,9 @@ function agregarDetalle(idarticulo,articulo,precio_venta)
 function cerrarformulario(){
  limpiar();
 $('#formulario').bootstrapValidator("resetForm",true); 
-$('.nav-tabs a[href="#listadox"]').tab('show');
-
-
+$('.nav-tabs a:last').tab('show');
+$('#cubitoagregar').show();
+fecha_actual();
 }
 init();
 

@@ -1,0 +1,13 @@
+  #imagenvisual {
+    background: #fff;
+    text-align: center;
+   
+}
+
+    #imagenvisual img {
+        
+        max-height: 200px;
+        max-width:  200px;
+        
+        
+    }

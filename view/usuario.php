@@ -1,19 +1,24 @@
 <?php
 require 'header.php';
 ?>
-<div class="content-wrapper">        
-  <!-- Main content -->
+<div class="content-wrapper">
+  <!-- section articulos-->
   <section class="content">
     <div class="row">
       <div class="col-md-12">
-        <div class="box">
-           <div class="box-header with-border">
-             <a class="btn btn-primary" data-toggle="modal" href='#modal'>Agregar</a>
-            <div class="box-tools pull-right">
-            </div>
-          </div>
-          <div class="panel-body table-responsive" id="divlistado">
-            <table id="listado" class="table table-striped table-bordered table-condensed table-hover">
+          <div class="panel-body">
+            <!-- menu tab custom -->
+            <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs pull-right">
+              <li><a href="#nuevox" onclick="mostrardivimagen()" data-toggle="tab">Nuevo</a></li>
+                <li class="active"><a href="#listax" data-toggle="tab">Listado</a></li>
+              <li class="pull-left header"><i class="fa fa-inbox"></i>Gestiòn de usuarios</li>
+            </ul>
+            <div class="tab-content no-padding">
+              <!-- listado -->
+              <div class="chart tab-pane active" id="listax" style="position: relative;height: 100%;">
+             <div class="panel-body table-responsive" id="divlistado">
+            <table id="listado" class="table  table-bordered">
               <thead>
                 <th>Opciones</th>
                 <th>Identi</th>
@@ -21,126 +26,162 @@ require 'header.php';
                 <th>Apellido</th>
                 <th>Direccion</th>
                 <th>Telefono</th>
-                  <th>Cargo</th>
-                  <th>Correo</th>
+                <th>Cargo</th>
+                <th>Correo</th>
                 <th>Imagen</th>
                  <th>Condicion</th>
               </thead>
-              <tbody>                            
+              <tbody>
               </tbody>
             </table>
           </div>
-             </div>
-              </div><!-- /.col -->
-            </div><!-- /.row -->
-          </section><!-- /.content -->
-        </div>
-  <div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" data-keyboard=”false” tabindex=”-1″  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" role=”dialog”>
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      
-      <div class="modal-body">
-        <!-- INICIO DE FORMULARIO -->
-       <form name="formulario" id="formulario" method="POST">
-             <input type="hidden" id="idusuario" name="idusuario">
-             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-              <div class="form-group">
-              <label>Identifiacion:</label>
-              <input type="text" class="form-control" name="identi" id="identi" placeholder="Identificacion">
-            </div>      
-               </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-                  <div class="form-group">
-                  <label>Nombre:</label>
-                  <input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Nombre del vendedor" >
-                </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-                  <div class="form-group">
-                  <label>Apellido:</label>
-                  <input type="text" class="form-control" name="apellido" id="apellido"  placeholder="Apellido del vendedor" >
-                </div>
-               </div>
-             </div>
-              <div class="row">
-               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-                  <div class="form-group">
-                  <label>Direccion:</label>
-                  <input type="text" class="form-control" name="direccion" id="direccion"  placeholder="Direccion" >
-                </div>
-               </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-                  <div class="form-group">
-                  <label>Telefono:</label>
-                  <input type="text" class="form-control" name="telefono" id="telefono"  placeholder="Telefono" >
-                </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-                  <div class="form-group">
-                  <label>Cargo:</label>
-                  <select name="cargo" id="cargo" class="form-control">
-                    <option value="ADMIN" selected>Administrador</option>
-                    <option value="Vendedor">Vendedor</option>
-                  </select>
-                </div>
-               </div>
-             </div>
-              <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                  <div class="form-group">
-                 <label>Correo:</label>
-                 <input type="email" class="form-control" name="correo" id="correo"  placeholder="Correo" >
-               </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            </div>
+            <!-- end listado -->
+            <!-- registro -->
+              <div class="chart tab-pane" id="nuevox" style="position: relative; height: 100%;">
+              <div class="panel-body">
+             <!-- body form1-->
+             <div class="col-lg-9">
+            <div class="box box-primary">
+            <div class="box-header">
+              <i class="ion ion-clipboard"></i>
+              <h5 class="box-title">Detalle del usuario</h5>
+              <div class="box-body">
+                <!-- form -->
+                  <form name="formulario" id="formulario" method="POST">
+                    <input type="hidden" id="idusuario" name="idusuario">
+                    <!-- start fila1 -->
+                    <div class="row">
+                     <!--input codigo  -->
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
                     <div class="form-group">
-                 <label>Clave:</label>
-                 <input type="password" class="form-control" name="clave" id="clave"  placeholder="Clave" >
-               </div>
-                  </div>
-                   <div class="form-group col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                  <div class="form-group">
-                      <label>Password confirm:</label>
-                        <input type="password" class="form-control" value="" id="confirmPassword" name="confirmPassword"/>
+                   <label class="control-label">Codigo</label>
+                    <input type="text" class="form-control" name="identi" id="identi" placeholder="Identificacion" autofocus>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <label>Imagen:</label>
-                 <div class="form-group">
-                     <input type="file" class="form-control" name="imagen" id="imagen">
+                    <!-- input nombre -->
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                     <div class="form-group">
+                    <label class="control-label">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Nombre">
+                     </div>
+                   </div>
+                     <!-- input categoria -->
+                     <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                       <div class="form-group">
+                      <label class="control-label">Apellido</label>
+                     <input type="text" class="form-control" name="apellido" id="apellido"  placeholder="Apellido" >
+                     </div>
+                   </div>
+                   <!-- input cantidad -->
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                     <div class="form-group">
+                     <label class="control-label">Direccion</label>
+                     <input type="text" class="form-control"  name="direccion" id="direccion" placeholder="Direccion" >
+                     </div>
                    </div>
                  </div>
-                   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                  <input type="hidden" name="imagenactual" id="imagenactual">
-                    <div name id="cuadritoimagen"> 
-                     <img src="" width="150px" height="120px" id="imagenmuestra">
+                 <!-- end fila 1 -->
+                 <!-- start fila2 -->
+                 <div class="row">
+                  <div class="col-lg-3 col-md-3 col-xs-12 col-sm-7">
+                     <div class="form-group">
+                     <label class="control-label">Telefono</label>
+                      <input name="telefono" id="telefono" class="form-control"  required="required" placeholder="Tel:"></input>
+                     </div>
+                   </div>
+                   <div class="col-lg-3 col-md-3 col-xs-12 col-sm-5">
+                    <div class="form-group">
+                     <label class="control-label">Rango</label>
+                      <select name="cargo" id="cargo" class="form-control">
+                        <option value="ADMIN">Administrador</option>
+                        <option value="Vendedor">Vendedor</option>
+                      </select>
+                     </div> 
+                   </div>
+                   <div class="col-lg-3 col-md-3 col-xs-12 col-sm-7">
+                     <div class="form-group">
+                     <label class="control-label">Correo</label>
+                      <input type="email" name="correo" id="correo" class="form-control"  required="required" placeholder="@gmail"></input>
+                     </div>
+                   </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-5">
+                     <div class="form-group">
+                     <label class="control-label">Clave</label>
+                      <input type="text" name="clave" id="clave" class="form-control"  required="required" placeholder="*******"></input>
+                     </div>
+                   </div>
+                 </div>
+                   <!-- fila3 -->
+                   <div class="row">
+                    <div class="col-lg-9 col-md-9 col-xs-12 col-sm-7">
+                      <div class="form-group">
+                     <label class="control-label">Presentaciòn</label>
+                    <input type="file" onclick="ocultardivimagen()" class="form-control" name="imagen" id="imagen">
+                     </div>
                     </div>
-                </div>
-                </div>
-        
-          <!-- END DE FORMULARIO -->
-      </div>
-      <div class="modal-footer">
-         <button type="submit" id="btnGuardar" name="btnGuardar" class="btn btn-primary btn-md ">
-          <span class="fa fa-save" aria-hidden="true"></span>
-        </button>
-        <button type="button" onclick="cerrarformulario()" class="btn btn-danger btn-md" data-dismiss="modal">
-           <span class="fa fa-close" aria-hidden="true"></span>
-        </button>
-      </div>
-      </form>
-    </div>
-  </div>
-   </div>
- </div>
+                     <div class="col-lg-3 col-md-3 col-xs-12 col-sm-5">
+                      <div class="form-group">
+                     <label class="control-label">confirmar</label>
+                      <input type="text" name="confirmPassword" id="confirmPassword" 
+                      class="form-control"  required="required" placeholder="*******"></input>
+                     </div>
+                   </div>
+                   </div>
+                 <br><br>
+              <!-- end box-body -->
+              <div class="form-group">
+                <button type="button" onclick="cerrarformulario()" class="btn btn-danger pull-left">Cancelar</button>
+                <button type="submit" class="btn btn-success pull-right">Guardar</button>
+              </div>
+                <!-- end form -->
+               </div>
+             </div>
+             </div>
+           </div>
+           <!-- end body form 1 -->
+           <!-- body form2 -->
+           <!-- CUADROS IMAGEN -->
+           <div class="row">
+           <div class="col-lg-3">
+            <div class="box box-default" id="div-muestra">
+            <div class="box-header">
+              <i class="ion ion-clipboard"></i>
+              <div id="cuadritoimagen" class="box-body">
+                  <input type="hidden" name="imagenactual" id="imagenactual">
+                  <center>
+                  <img src="" width="98px" height="102px" id="imagenmuestra">
+                 </center>
+             </div>
+               </div>
+             </div>
+             <div id="imagendefecto">
+               <img src="../public/images/icon_user.png" class="img-responsive" alt="Image">
+             </div>
+             <div id="imagenvisual" class="box-body">
+             </div>
+             </div>
+             </div>
+           </div>
+            </form>
+           <!-- end body form -->
+          </div>
+           <!-- end panel body -->
+          <!-- end registro -->
+        </div>
+             </div>
+              </div>
+
+          </section>
+        </div>
+
         <?php
         require 'footer.php';
         ?>
-       
    <script type="text/javascript" src="scripts/usuario.js"></script>
-         
+   <script type="text/javascript" src="../public/js/carga_imagen.js"></script>
+ 
+
+
 
 

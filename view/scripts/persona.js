@@ -3,11 +3,11 @@ var tabla;
 var tablaprovedor;
 
  function init(){
-	limpiar();
 	guardaryeditar();
 	listarp();
 	listar();
 	ciudadvalidate();
+	$("#num_documento").focus();
 	
 	
 }
@@ -21,14 +21,10 @@ function limpiar()
 	$("#direccion").val("");
 	$("#telefono").val("");
 	$("#email").val("");
-	// ___________________________________________
-	$('#modal').on('shown.bs.modal', function () {
-	$('#formulario').find('[name="tipo_documento"]').focus();});
+	
 }
-
-//lista provedor
+//funcion para listar a los proveedores
 function listarp()
-
 {
 	 tablaprovedor=$('#listadop').dataTable(
 	{
@@ -56,6 +52,8 @@ function listarp()
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
+
+// funcion para listar a los clientes
 function listar()
 
 {
@@ -86,8 +84,6 @@ function listar()
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
-
-
 function guardaryeditar(e)
 {
 // VALIDATION formulario
@@ -239,24 +235,23 @@ num_documento: {
 	    		timer: 1500
 	    	});  
 	    	limpiar();	
-	    	  $('#modal').modal('hide');
 	    	  $('#formulario').bootstrapValidator("resetForm",true); 
 	          tabla.ajax.reload();
 	          tablaprovedor.ajax.reload();
+	          $('.nav-tabs a:last').tab('show');
 	        
 	    }
 
 	});
 	});
 }
-
 // end save
 function mostrar(idpersona)
 {
 	$.post("../controller/persona.php?op=mostrar",{idpersona : idpersona}, function(data, status)
 	{
 		data = JSON.parse(data);
-		 $('#modal').modal('show');
+		 $('.nav-tabs a:first').tab('show')
 	   	$("#idpersona").val(data.idpersona);
 	   	$("#tipo_documento").val(data.tipo_documento).change();
 	   	$("#num_documento").val(data.num_documento);
@@ -266,7 +261,6 @@ function mostrar(idpersona)
 		$("#telefono").val(data.telefono);
 		$("#ciudad").val(data.ciudad).change();
 		$("#email").val(data.email);
-
 
  	})
 }
@@ -295,7 +289,8 @@ function eliminar(idpersona)
 
 function cerrarformulario(){
 $('#formulario').bootstrapValidator("resetForm",true); 
-limpiar()
+limpiar();
+$('.nav-tabs a:last').tab('show');
 }
 
 function ciudadvalidate(){

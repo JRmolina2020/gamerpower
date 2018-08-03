@@ -45,11 +45,11 @@ switch ($_GET["op"]){
          while ($reg=$rspta->fetch_object()){
             $data[]=array(
                 "0"=>($_SESSION['cargo']=='ADMIN')?
-                '<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idpersona.')">
+                '<button class="btn btn-success btn-xs" onclick="mostrar('.$reg->idpersona.')">
                 <i class="fa fa-pencil"></i></button> '.
             ' <button class="btn btn-danger btn-xs" onclick="eliminar('.$reg->idpersona.')">
              <i class="fa fa-trash"></i></button> ':
-             '<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idpersona.')">
+             '<button class="btn btn-success btn-xs" onclick="mostrar('.$reg->idpersona.')">
              <i class="fa fa-pencil"></i></button> '.
             '<button class="btn btn-danger btn-xs" onclick="permiso()">
             <i class="fa fa-trash"></i></button> ',
@@ -80,11 +80,11 @@ switch ($_GET["op"]){
         while ($reg=$rspta->fetch_object()){
             $data[]=array(
                 "0"=>($_SESSION['cargo']=='ADMIN')?
-                '<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idpersona.')">
+                '<button class="btn btn-success btn-xs" onclick="mostrar('.$reg->idpersona.')">
                 <i class="fa fa-pencil"></i></button> '.
             ' <button class="btn btn-danger btn-xs" onclick="eliminar('.$reg->idpersona.')">
              <i class="fa fa-trash"></i></button> ':
-             '<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idpersona.')">
+             '<button class="btn btn-success btn-xs" onclick="mostrar('.$reg->idpersona.')">
              <i class="fa fa-pencil"></i></button> '.
             '<button class="btn btn-danger btn-xs" onclick="permiso()">
             <i class="fa fa-trash"></i></button> ',

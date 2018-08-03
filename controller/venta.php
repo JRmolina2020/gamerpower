@@ -10,15 +10,12 @@ $idusuario=$_SESSION["idusuario"];
 $num_comprobante=isset($_POST["num_comprobante"])? limpiarCadena($_POST["num_comprobante"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
 $total_venta=isset($_POST["total_venta"])? limpiarCadena($_POST["total_venta"]):"";
-$neto=isset($_POST["total_neto"])? limpiarCadena($_POST["total_neto"]):"";
-$iva=isset($_POST["total_iva"])? limpiarCadena($_POST["total_iva"]):"";
-$total_final=isset($_POST["total_cfinal"])? limpiarCadena($_POST["total_cfinal"]):"";
+
 
 switch ($_GET["op"]){
     case 'guardaryeditar':
     if (empty($idventa)){
         $rspta=$venta->insertar($idcliente,$idusuario,$num_comprobante,$fecha_hora,$total_venta,
-        $neto, $iva,$total_final,
             $_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_venta"],$_POST["descuento"]);
         echo $rspta ? "Venta registrada" : "No se pudieron registrar todos los datos de la venta";
     }
@@ -43,7 +40,7 @@ switch ($_GET["op"]){
     
     $rspta = $venta->listarDetalle($id);
     $total=0;
-    echo '<thead style="">
+    echo'<thead style="">
     <th>Opciones</th>
     <th>Artículo</th>
     <th>Cantidad</th>
@@ -62,22 +59,14 @@ switch ($_GET["op"]){
 
     }
     echo '<tfoot>
-   <th>
-  TOTAL<br>
-  $NETO<br>
-  IVA 18%<br>
-  TOTAL COMPRA</th>
+    <th>TOTAL</th>
     <th></th>
     <th></th>
     <th></th>
     <th></th>
     <th>
-    <h5 id="total">$/.'.$total.'</h5><input type="hidden" name="total_venta" id="total_venta">
-    <h5 id="neto">S/.'.$neto.'</h4><input type="hidden" name="total_neto" id="total_neto">
-    <h5 id="iva">S/.'.$iva.'</h4><input type="hidden" name="total_iva" id="total_iva">
-    <h5 id="totalfinal">S/.'.$total_final.'</h4><input type="hidden" name="total_final" id="total_final>
+    <h5 style="color:#ee1616" id="total">  $'.$total.'</h5><input type="hidden" name="total_venta" id="total_venta">
     </th> 
-    
     </tfoot>';
     break;
     
@@ -87,18 +76,19 @@ switch ($_GET["op"]){
     $data= Array();
     while ($reg=$rspta->fetch_object()){
         $data[]=array(
-            "0"=>($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>'.
-            ' <button class="btn btn-danger btn-xs" onclick="anular('.$reg->idventa.')"><i class="fa fa-close"></i></button>':
-            '<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>',
+            "0"=>($reg->estado=='Aceptado')?
+            '<button class="btn btn-success btn-xs" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button> '.
+            '<a class="btn btn-info btn-xs" role="button" href="../reportes/tiket.php?id='.$reg->idventa.'">
+                <i class="fa fa-cc"></i></a> '.
+            '<button class="btn btn-danger btn-xs" onclick="anular('.$reg->idventa.')"><i class="fa fa-close"></i></button> '
+            :
+            '<button class="btn btn-success btn-xs" onclick="mostrar('.$reg->idventa.')"><i class="fa fa-eye"></i></button>',
             "1"=>$reg->fecha,
             "2"=>$reg->cliente,
             "3"=>$reg->usuario,
             "4"=>$reg->num_comprobante,
             "5"=>$reg->total_venta,
-            "6"=>$reg->neto,
-            "7"=>$reg->iva,
-            "8"=>$reg->total_final,
-            "9"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
+            "6"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
             '<span class="label bg-red">Anulado</span>'
         );
     }

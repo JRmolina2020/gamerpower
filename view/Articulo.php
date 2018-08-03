@@ -1,22 +1,24 @@
 <?php
 require 'header.php';
 ?>
-<div class="content-wrapper">        
-  <!-- Main content -->
+<div class="content-wrapper">
+  <!-- section articulos-->
   <section class="content">
     <div class="row">
       <div class="col-md-12">
-        <div class="box">
-           <div class="box-header with-border">
-             <a class="btn btn-default btn-sm" data-toggle="modal" href='#modal'>Nuevo
-              <i class="fa fa-plus"></i>
-             </a>
-             
-            <div class="box-tools pull-right">
-            </div>
-          </div>
-          <div class="panel-body table-responsive" id="divlistado">
-            <table id="listado" class="table table-striped table-bordered table-condensed table-hover">
+          <div class="panel-body">
+            <!-- menu tab custom -->
+            <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs pull-right">
+              <li><a href="#nuevox" onclick="mostrardivimagen()" data-toggle="tab">Nuevo</a></li>
+                <li class="active"><a href="#listax" data-toggle="tab">Listado</a></li>
+              <li class="pull-left header"><i class="fa fa-inbox"></i>Articulos</li>
+            </ul>
+            <div class="tab-content no-padding">
+              <!-- listado -->
+              <div class="chart tab-pane active" id="listax" style="position: relative;height: 100%;">
+             <div class="panel-body table-responsive" id="divlistado">
+            <table id="listado" class="table  table-bordered">
               <thead>
                 <th>Opciones</th>
                 <th>Categoria</th>
@@ -27,103 +29,149 @@ require 'header.php';
                  <th>Imagen</th>
                 <th>Disponibilidad</th>
               </thead>
-              <tbody>                            
+              <tbody>
               </tbody>
             </table>
           </div>
-             </div>
-              </div><!-- /.col -->
-            </div><!-- /.row -->
-          </section><!-- /.content -->
-        </div>
-  <div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" data-keyboard=”false” tabindex=”-1″  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" role=”dialog”>
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      
-      <div class="modal-body">
-        <!-- INICIO DE FORMULARIO -->
-       <form name="formulario" id="formulario" method="POST">
-             <input type="hidden" id="idarticulo" name="idarticulo">
-             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div class="form-group">
-              <label>Código:</label>
-              <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Código Barras">
-               <button class="btn btn-success btn-xs" type="button" onclick="generarbarcode()">Generar</button>
-               <a href="#" data-toggle="tooltip" title="Inserte primero el codigo"></a>
-              <button class="btn btn-info btn-xs" type="button" onclick="imprimir()">Imprimir</button>
-            </div>      
-               </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                  <div class="form-group">
-                  <label>Nombre:</label>
-                  <input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Nombre del articulo" >
-                </div>
-               </div>
-             </div>
-              <div class="row">
-                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <div class="form-group">
-                  <label>Existencias:</label>
-                  <input type="text" class="form-control"  value="0" disabled name="stock" id="stock" >
-                </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="form-group">
-                <label>Descripcion</label>
-                <textarea name="descripcion" id="descripcion" class="form-control" rows="3" required="required"></textarea>
-              </div>
-               </div>
-             </div>
-              <div class="row">
-                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                 <label>Categoría:</label>
-                 <select id="idcategoria" name="idcategoria" class="form-control selectpicker"  data-live-search="true" 
-                 data-style="btn-primary"></select>
-                  </div>
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <label>Imagen:</label>
-                 <div class="form-group">
-                     <input type="file" class="form-control" name="imagen" id="imagen">
-                   </div>
-               </div>
-             </div>
-<!-- cuadros div de codigo de barra e imagen del producto -->
-             <div class="row">
-                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <div id="print">
-                  <svg id="barcode">
-                  </svg>
-                </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <input type="hidden" name="imagenactual" id="imagenactual">
-                    <div name id="cuadritoimagen"> 
-                       <img src="" width="150px" height="120px" id="imagenmuestra">
+            </div>
+            <!-- end listado -->
+            <!-- registro -->
+              <div class="chart tab-pane" id="nuevox" style="position: relative; height: 100%;">
+              <div class="panel-body">
+             <!-- body form1-->
+             <div class="col-lg-9">
+            <div class="box box-primary">
+            <div class="box-header">
+              <i class="ion ion-clipboard"></i>
+              <h5 class="box-title">Detalles del producto</h5>
+              <div class="box-body">
+                <!-- form -->
+                  <form name="formulario" id="formulario" method="POST">
+                    <input type="hidden" id="idarticulo" name="idarticulo">
+                    <!-- start fila1 -->
+                    <div class="row">
+                     <!--input codigo  -->
+                    <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+                    <div class="form-group">
+                   <label class="control-label">Codigo</label>
+                    <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Código Barras" autofocus>
                     </div>
-                </div>
+                  </div>
+                    <!-- input nombre -->
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                     <div class="form-group">
+                    <label class="control-label">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Nombre del articulo" >
+                     </div>
+                   </div>
+                     <!-- input categoria -->
+                     <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                       <div class="form-group">
+                      <label class="control-label">Categoria</label>
+                     <select id="idcategoria" name="idcategoria" class="form-control selectpicker"
+                     data-live-search="true">
+                   </select>
+                     </div>
+                   </div>
+                   <!-- input cantidad -->
+                    <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12" id="divstock">
+                     <div class="form-group">
+                     <label class="control-label">Stock</label>
+                     <input type="text" class="form-control"  name="stock" id="stock" >
+                     </div>
+                   </div>
+                 </div>
+                 <!-- end fila 1 -->
+                 <!-- start fila2 -->
+                 <div class="row">
+                  <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+                     <div class="form-group">
+                     <label class="control-label">Presentaciòn</label>
+                    <input type="file" onclick="ocultardivimagen()" class="form-control" name="imagen" id="imagen">
+                     </div>
+                   </div>
+                   <div class="col-lg-6 col-md-6 col-xs-8 col-sm-8">
+                     <div class="form-group">
+                     <label class="control-label">Descripciòn</label>
+                      <textarea name="descripcion" id="descripcion" class="form-control" rows="1" required="required"></textarea>
+                     </div>
+                   </div>
+                   <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4">
+                    <div class="form-group">
+                     <label class="control-label">Disponible</label>
+                      <select name="condicion" id="condicion" class="form-control">
+                        <option value="1">Si-D</option>
+                        <option value="0">No-D</option>
+                      </select>
+                     </div> 
+                   </div>
+                 </div>
+                 <!-- end fila2-->
+                 <br><br>
+              <!-- end box-body -->
+              <div class="form-group">
+                <button type="button" onclick="cerrarformulario()" class="btn btn-danger btn-flat margi pull-left">Cancelar</button>
+                <button type="submit" class="btn btn-success pull-right btn-flat margi">Guardar</button>
+              </div>
+                <!-- end form -->
+               </div>
              </div>
-          <!-- END DE FORMULARIO -->
-      </div>
-      <div class="modal-footer">
-         <button type="submit" id="btnGuardar" name="btnGuardar" class="btn btn-primary btn-md ">
-          <span class="fa fa-save" aria-hidden="true"></span>
-        </button>
-        <button type="button" onclick="cerrarformulario()" class="btn btn-danger btn-md" data-dismiss="modal">
-           <span class="fa fa-close" aria-hidden="true"></span>
-        </button>
-      </div>
-      </form>
-    </div>
-  </div>
-   </div>
- </div>
+             </div>
+           </div>
+           <!-- end body form 1 -->
+           <!-- body form2 -->
+           <!-- CUADROS IMAGEN -->
+           <div class="row">
+           <div class="col-lg-3">
+            <div class="box box-default" id="div-muestra">
+            <div class="box-header">
+              <i class="ion ion-clipboard"></i>
+              <div id="cuadritoimagen" class="box-body">
+                    <input type="hidden" name="imagenactual" id="imagenactual">
+                    <center>
+                    <img src="" width="98px" height="102px" id="imagenmuestra">
+                   </center>
+
+             </div>
+             <!-- barcode -->
+              <div id="print">
+              <svg id="barcode">
+               </svg>
+                </div>
+                <!-- end barcode -->
+               </div>
+             </div>
+             <div id="imagendefecto">
+               <img src="../public/images/icon_producto.png" class="img-responsive" alt="Image">
+             </div>
+             <!-- aqui se carga la imagen que seleccionamos de nuestro folder -->
+             <div id="imagenvisual" class="box-body">
+             </div>
+             <!-- end -->
+             </div>
+             </div>
+           </div>
+            </form>
+           <!-- end body form -->
+          </div>
+           <!-- end panel body -->
+          <!-- end registro -->
+        </div>
+             </div>
+              </div>
+
+          </section>
+        </div>
+
         <?php
         require 'footer.php';
         ?>
-         <script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
-<script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
+  <script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
+  <script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
    <script type="text/javascript" src="scripts/articulo.js"></script>
-         
+   <script type="text/javascript" src="../public/js/carga_imagen.js"></script>
+ 
+
+
 
 

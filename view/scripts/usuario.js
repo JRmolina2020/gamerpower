@@ -2,10 +2,11 @@
 var tabla;
 
  function init(){
-	limpiar();
 	guardaryeditar(); 
 	listar();
     $("#imagenmuestra").hide();
+    $("#div-muestra").hide();
+
 }
 //Función limpiar
 function limpiar()
@@ -22,9 +23,7 @@ function limpiar()
 	$("#imagenmuestra").attr("src","");
 	$("#imagenactual").val("");
 	$("#cuadritoimagen").hide();
-	$("#print").hide();
-	$('#modal').on('shown.bs.modal', function () {
-	$('#formulario').find('[name="identi"]').focus();});
+	$("#vista_imagen").hide();
 }
 
 //Función listar
@@ -57,6 +56,7 @@ function listar()
 		"iDisplayLength": 5,//Paginación
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
+	 ocultardivimagen();
 }
 
 function guardaryeditar(e)
@@ -262,9 +262,9 @@ identi: {
 	    		timer: 1500
 	    	});  
 	    	limpiar();	
-	    	  $('#modal').modal('hide');
-	    	  $('#formulario').bootstrapValidator("resetForm",true); 
+	    	 $('#formulario').bootstrapValidator("resetForm",true);
 	          tabla.ajax.reload();
+	          $('.nav-tabs a:last').tab('show')
 	        
 	    }
 
@@ -278,8 +278,6 @@ function mostrar(idusuario)
 	$.post("../controller/usuario.php?op=mostrar",{idusuario : idusuario}, function(data, status)
 	{
 		data = JSON.parse(data);
-		 $('#modal').modal('show');
-		$("#cuadritoimagen").show();
 	   	$("#idusuario").val(data.idusuario);
 	   	$("#identi").val(data.identi);
 	   	$("#nombre").val(data.nombre);
@@ -289,11 +287,17 @@ function mostrar(idusuario)
 		$("#telefono").val(data.telefono);
 		$("#cargo").val(data.cargo).change();
 		$("#correo").val(data.correo);
-		$("#clave").val(data.clave);
-		$("#confirmPassword").val(data.clave);
+		// -------------------------------------
+		$('.nav-tabs a:first').tab('show')
 		$("#imagenmuestra").show();
 		$("#imagenmuestra").attr("src","../files/usuario/"+data.imagen);
 		$("#imagenactual").val(data.imagen);
+	  //--------------------------------------
+		   $("#div-muestra").show();
+		   $("#cuadritoimagen").show();
+// funciones
+		 ocultardivimagen();
+
  	})
 }
 
@@ -301,7 +305,7 @@ function mostrar(idusuario)
 function eliminar(idusuario)
 {
  swal({
-  title: "Desea eliminar esta Usuario Recuerde una vez eliminado no se podra recuperar la informacion!",
+  title: "Desea eliminar este Usuario?, Recuerde una ves eliminado no se podra recuperar la informacion!",
   type: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -341,8 +345,23 @@ function bloquear(idusuario,condicion)
 
 function cerrarformulario(){
 $("#cuadritoimagen").hide();
-$('#formulario').bootstrapValidator("resetForm",true); 
+$('#formulario').bootstrapValidator("resetForm",true);
 limpiar();
+$('.nav-tabs a:last').tab('show');
+$("#div-muestra").hide();
+// destruyendo div de imagen
+ocultardivimagen();
+}
+
+function mostrardivimagen(){
+$("#imagendefecto").show();
+$("#imagenvisual").show();
+$("#identi").focus();
+}
+
+function ocultardivimagen(){
+$("#imagendefecto").hide();
+$("#imagenvisual").empty();
 }
 
 init();

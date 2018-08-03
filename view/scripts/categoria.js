@@ -1,7 +1,6 @@
 var tabla;
  function init(){
 	listarcategoria();
-	limpiarcategoria();
 	guardaryeditarcategoria();	
 	// $('#ciudad').selectpicker('refresh');
 
@@ -9,8 +8,8 @@ var tabla;
 //Función limpiarcategoria
 function limpiarcategoria()
 {
-	
 	$("#nombre").val("");
+	$("#idcategoria").val("");
 	$("#descripcion").val("");
 	$('#modalcategoria').on('shown.bs.modal', function () {
 	$('#formulariocategoria').find('[name="nombre"]').focus();});
@@ -43,7 +42,7 @@ function listarcategoria()
 				},
 		"bDestroy": true,
 		"iDisplayLength": 5,//Paginación
-	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
+	    "order": [[ 0, "asc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
 
@@ -81,15 +80,6 @@ $('#formulariocategoria') .bootstrapValidator({
 			}
 		},
 		
-		
-		nombre: {
-			message: 'Nombre del acliente invalido',
-			validators: {
-				notEmpty: {
-					message: 'El nombre  es obligatorio y no puede estar vacio.'
-				}
-			}
-		},
 
 		descripcion: {
 			message: 'Descripcion invalida',
@@ -115,8 +105,7 @@ $('#formulariocategoria') .bootstrapValidator({
 
 // end validaciones
 .on('success.form.bv', function(e) {
-// ---------------------------------------
-
+// --------------------------------------
 	e.preventDefault(); //No se activará la acción predeterminada del evento
 	var formData = new FormData($("#formulariocategoria")[0]);
 
@@ -156,7 +145,6 @@ function mostrar(idcategoria)
 	{
 		data = JSON.parse(data);		
 	   $('#modalcategoria').modal('show');
-		
 		$("#nombre").val(data.nombre);
 		$("#descripcion").val(data.descripcion);
 	    $("#ciudad").val(data.ciudad).change();
@@ -224,7 +212,6 @@ function eliminar(idcategoria)
   }
 })
 }
-
 
 function cerrarformulariocategoria(){
 $('#formulariocategoria').bootstrapValidator("resetForm",true); 

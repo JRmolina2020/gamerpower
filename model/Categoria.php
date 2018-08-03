@@ -55,7 +55,7 @@ Class Categoria
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT * FROM categoria";
+		$sql="SELECT * FROM categoria order by idcategoria desc";
 		return ejecutarConsulta($sql);		
 	}
 	//Implementar un método para listar los registros y mostrar en el select

@@ -9,9 +9,6 @@ Class Persona
     {
  
     }
-
-
-
     //Implementamos un método para insertar registros
     public function insertar($tipo_persona,$tipo_documento,$num_documento,$nombre,$apellido,$barrio,$direccion,$ciudad,$telefono,
         $email)

@@ -2,7 +2,7 @@
 require 'header.php';
 require_once'../controller/home.php';
 ?>
-<div class="content-wrapper">        
+<div class="content-wrapper">
   <section class="content">
    <div class="row">
      <div class="panel-body table-responsive" id="divlistado">
@@ -92,48 +92,30 @@ require_once'../controller/home.php';
       </div>
     </div>
   </div>
-          <!-- PRODUCT LIST -->
           <div class="row">
-            <div class="col-lg-8">
-              <!-- Productos mas vendidos CARD -->
-                <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Los 5 Productos mas vendidos</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <table class="table table-striped">
-                <tr>
-                  <th>Producto</th>
-                  <th style="width: 40px">Vendidos</th>
-                  <th>Progreso</th>
-                  <th style="width: 40px">Total</th>
-                </tr>
-                <tr>
-          <?php
-           while ($regp=$rsptapm->fetch_object()){
-            $nombrep = $regp->producto;
-            $comprado = $regp->comprado;
-            $totalcp = $regp->total;
-             ?>
-                  <td><?php echo $nombrep; ?></td>
-                  <td><?php echo $comprado; ?></td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-danger" 
-                      style="width:<?php echo $comprado;?>%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-green"><?php echo $totalcp; ?></span></td>
-                </tr>
-                <?php }?>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-              <!-- END productos mas vendidos CARDS -->
-            </div>
+           <!-- graficos-->
+            <div class="col-lg-4">
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    Compras de los 10 ultimos dias
+                  </div>
+                  <div class="box-body">
+                    <canvas id="compras" width="400" height="300"></canvas>
+                  </div>
+                </div>
+              </div>
+              <!-- grafico de ventas en los ultimos 12 meses del año -->
+              <div class="col-lg-4">
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    Ventas de los últimos 12 meses
+                  </div>
+                  <div class="box-body">
+                    <canvas id="ventas" width="400" height="300"></canvas>
+                  </div>
+                </div>
+              </div>
+             <!-- END graficos -->
             <div class="col-lg-4">
                <div class="box box-primary">
             <div class="box-header with-border">
@@ -174,12 +156,7 @@ require_once'../controller/home.php';
               <a href="Articulo.php" class="uppercase">Ver todos los productos</a>
             </div>
           </div>
-              
-            </div>
-          </div>
-          
-          <!-- END CARD LIST PRODUCTOS -->
-        
+        </div>
 </section>
 </div>
 <script type="text/javascript" src="../public/js/Chart.min.js"></script>
@@ -191,7 +168,7 @@ require_once'../controller/home.php';
     data: {
       labels: [<?php echo $fechasc; ?>],
       datasets: [{
-        label: '# Compras en S/ de los últimos 10 días',
+        label: '# Compras en $/ de los últimos 10 días',
         data: [<?php echo $totalesc; ?>],
         backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -236,7 +213,7 @@ require_once'../controller/home.php';
     data: {
       labels: [<?php echo $fechasv; ?>],
       datasets: [{
-        label: '# Ventas en S/ de los últimos 12 meses',
+        label: '# Ventas en $/ de los últimos 12 meses',
         data: [<?php echo $totalesv; ?>],
         backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -246,7 +223,7 @@ require_once'../controller/home.php';
         'rgba(153, 102, 255, 0.2)',
         'rgba(255, 159, 64, 0.2)',
         'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
+        'rgba(54, 159, 132, 0.2)',
         'rgba(255, 206, 86, 0.2)',
         'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
@@ -279,7 +256,7 @@ require_once'../controller/home.php';
       }
     }
   });
-</script> 
+</script>
 <?php
 require 'footer.php';
 ?>

@@ -2,18 +2,16 @@
 var tabla;
 
  function init(){
-	
-	limpiar();
 	guardaryeditar();
 	listar();
     $("#imagenmuestra").hide();
+    $("#div-muestra").hide();
 //Cargamos los items al select categoria
 	$.post("../controller/articulo.php?op=selectCategoria", function(r){
 	 $("#idcategoria").html(r);
 	 $('#idcategoria').selectpicker('refresh');
 
 	});
-
 }
 //Función limpiar
 function limpiar()
@@ -28,9 +26,9 @@ function limpiar()
 	$("#imagenmuestra").attr("src","");
 	$("#imagenactual").val("");
 	$("#cuadritoimagen").hide();
+	$("#vista_imagen").hide();
+
 	$("#print").hide();
-	$('#modal').on('shown.bs.modal', function () {
-	$('#formulario').find('[name="codigo"]').focus();});
 }
 
 //Función listar
@@ -42,8 +40,8 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		 
-	           
+	    buttons: [
+
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -54,15 +52,16 @@ function listar()
 
 			url: '../controller/articulo.php?op=listar',
             type: "GET",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
-		"iDisplayLength": 5,//Paginación
+		"iDisplayLength": 4,//Paginación
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
+	 ocultardivimagen();
 }
 
 function guardaryeditar(e)
@@ -95,7 +94,7 @@ codigo: {
 						regexp: /^[a-zA-Z0-9_\.]+$/,
 						message: 'No se permiten espacios',
 						}
-				
+
 			}
 		},
 
@@ -110,7 +109,7 @@ codigo: {
 					max: 20,
 					message: 'Minimo 3 caracteres y Maximo 20 '
 				},
-				
+
 			}
 		},
 
@@ -125,14 +124,14 @@ codigo: {
                         },
                     }
                 },
-           
+
 		descripcion: {
 			message: 'Descripcion del aritculo invalida',
 			validators: {
 				notEmpty: {
 					message: 'La descripcion de el articulo  es obligatorio y no puede estar vacio.'
 				},
-				
+
 			}
 		},
 		idcategoria: {
@@ -141,10 +140,10 @@ codigo: {
 				notEmpty: {
 					message: 'Debe asignarle una categoria al articulo'
 				},
-			
+
 			}
 		},
-		
+
 	}
 })
 
@@ -161,92 +160,61 @@ codigo: {
 	    contentType: false,
 	    processData: false,
 	    success: function(datos)
-	    {                    
+	    {
 	    	swal({
 	    		position: 'top-end',
 	    		type: 'success',
 	    		title: datos,
 	    		showConfirmButton: false,
 	    		timer: 1500
-	    	});  
-	    	limpiar();	
-	    	  $('#modal').modal('hide');
-	    	  $('#formulario').bootstrapValidator("resetForm",true); 
+	    	});
+	    	limpiar();
+
+	    	  $('#formulario').bootstrapValidator("resetForm",true);
 	          tabla.ajax.reload();
-	        
+	          $('.nav-tabs a:last').tab('show')
+
 	    }
 
 	});
 	});
 }
-
 // end save
 function mostrar(idarticulo)
 {
 	$.post("../controller/articulo.php?op=mostrar",{idarticulo : idarticulo}, function(data, status)
 	{
 		data = JSON.parse(data);
-		 $('#modal').modal('show');
-		$("#cuadritoimagen").show();
+// --------------------------------
 	   	$("#idarticulo").val(data.idarticulo);
 	   	$("#idcategoria").val(data.idcategoria).change();
 	   	$("#codigo").val(data.codigo);
 		$("#nombre").val(data.nombre);
 		$("#stock").val(data.stock);
 		$("#descripcion").val(data.descripcion);
+// ----------------------------------------
+        $('.nav-tabs a:first').tab('show')
 		$("#imagenmuestra").show();
 		$("#imagenmuestra").attr("src","../files/articulo/"+data.imagen);
 		$("#imagenactual").val(data.imagen);
+	   
+		   $("#div-muestra").show();
+		   $("#cuadritoimagen").show();
+		   $("#divstock").show();
+		   
+// funciones
 		generarbarcode();
-
+		 ocultardivimagen();
 
  	})
 }
 
-//Función para desactivar registros
 
-function desactivar(idarticulo)
-{
- swal({
-  title: "Desea desactivar este articulo!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'SI, Desactivar!'
-}).then((result) => {
-  if (result.value) {
-  	$.post("../controller/articulo.php?op=desactivar", {idarticulo : idarticulo}, function(e){
-        		 swal(e);
-	            tabla.ajax.reload();
-       });	
-  }
-})
-}
-
-function activar(idarticulo)
-{
-	swal({
-  title: "Desea activar esta articulo!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'SI, Activar!'
-}).then((result) => {
-  if (result.value) {
-  	$.post("../controller/articulo.php?op=activar", {idarticulo : idarticulo}, function(e){
-        		 swal(e);
-	            tabla.ajax.reload();
-       });	
-  }
-})
-}
 //Función para eliminar registros
 function eliminar(idarticulo)
 {
  swal({
-  title: "Desea eliminar esta articulo Recuerde una vez eliminado no se podra recuperar la informacion!",
+  title: "Desea eliminar este articulo?, Recuerde una vez eliminado, no se podrà recuperar la informacion!",
   type: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -257,36 +225,44 @@ function eliminar(idarticulo)
   	$.post("../controller/articulo.php?op=eliminar", {idarticulo : idarticulo}, function(e){
         		 swal(e);
 	            tabla.ajax.reload();
-       });	
-   
+       });
+
   }
 })
 }
 
 function cerrarformulario(){
 $("#cuadritoimagen").hide();
-$('#formulario').bootstrapValidator("resetForm",true); 
-limpiar()
+$('#formulario').bootstrapValidator("resetForm",true);
+limpiar();
+$('.nav-tabs a:last').tab('show');
+$("#div-muestra").hide();
+// destruyendo div de imagen
+ocultardivimagen();
+
+}
+
+function mostrardivimagen(){
+$("#imagendefecto").show();
+$("#imagenvisual").show();
+$("#divstock").hide();
+
+}
+
+
+function ocultardivimagen(){
+$("#imagendefecto").hide();
+$("#imagenvisual").empty();
 }
 
 //función para generar el código de barras
 function generarbarcode()
 {
 	codigo=$("#codigo").val();
-	JsBarcode("#barcode", codigo);
+	JsBarcode("#barcode",codigo);
 	$("#print").show();
 }
 
-//Función para imprimir el Código de barras
-function imprimir()
-{
-	var dato = document.formulario.codigo.value;
-	if (dato=='') {
-	}else{
-	$("#print").printArea();	
-	}
-	
-}
 init();
 
 

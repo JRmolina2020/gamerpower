@@ -11,33 +11,20 @@ Class Articulo
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar($idcategoria,$codigo,$nombre,$stock,$descripcion,$imagen)
+	public function insertar($idcategoria,$codigo,$nombre,$descripcion,$imagen,$condicion)
 	{
 		$sql="INSERT INTO articulo (idcategoria,codigo,nombre,stock,descripcion,imagen,condicion)
-		VALUES ('$idcategoria','$codigo','$nombre','$stock','$descripcion','$imagen','1')";
+		VALUES ('$idcategoria','$codigo','$nombre','0','$descripcion','$imagen','$condicion')";
 		return ejecutarConsulta($sql);
 	}
 
 	//Implementamos un método para editar registros
-	public function editar($idarticulo,$idcategoria,$codigo,$nombre,$stock,$descripcion,$imagen)
+	public function editar($idarticulo,$idcategoria,$codigo,$nombre,$stock,$descripcion,$imagen,$condicion)
 	{
-		$sql="UPDATE articulo SET idcategoria='$idcategoria',codigo='$codigo',nombre='$nombre',stock='$stock',descripcion='$descripcion',imagen='$imagen' WHERE idarticulo='$idarticulo'";
+		$sql="UPDATE articulo SET idcategoria='$idcategoria',codigo='$codigo',nombre='$nombre',stock='$stock',descripcion='$descripcion',imagen='$imagen',condicion='$condicion' WHERE idarticulo='$idarticulo'";
 		return ejecutarConsulta($sql);
 	}
 
-	//Implementamos un método para desactivar registros
-	public function desactivar($idarticulo)
-	{
-		$sql="UPDATE articulo SET condicion='0' WHERE idarticulo='$idarticulo'";
-		return ejecutarConsulta($sql);
-	}
-
-	//Implementamos un método para activar registros
-	public function activar($idarticulo)
-	{
-		$sql="UPDATE articulo SET condicion='1' WHERE idarticulo='$idarticulo'";
-		return ejecutarConsulta($sql);
-	}
 
 //Implementamos un método para eliminar registros
 	public function eliminar($idarticulo)

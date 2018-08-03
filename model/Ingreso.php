@@ -11,12 +11,10 @@ Class Ingreso
     }
  
     //Implementamos un método para insertar registros
-    public function insertar($idproveedor,$idusuario,$num_comprobante,$fecha_hora,
-    $total_compra,$neto,$iva,$total_final,$idarticulo,$cantidad,$precio_compra,$precio_venta)
+    public function insertar($idproveedor,$idusuario,$num_comprobante,$fecha_hora,$total_compra,$idarticulo,$cantidad,$precio_compra,$precio_venta)
     {
-        $sql="INSERT INTO ingreso (idproveedor,idusuario,num_comprobante,fecha_hora,total_compra,neto,iva,total_final,estado)
-        VALUES ('$idproveedor','$idusuario','$num_comprobante','$fecha_hora','$total_compra','$neto','$iva','$total_final',
-        'Aceptado')";
+        $sql="INSERT INTO ingreso (idproveedor,idusuario,num_comprobante,fecha_hora,total_compra,estado)
+        VALUES ('$idproveedor','$idusuario','$num_comprobante','$fecha_hora','$total_compra','Aceptado')";
         //return ejecutarConsulta($sql);
         $idingresonew=ejecutarConsulta_retornarID($sql);
  
@@ -32,8 +30,6 @@ Class Ingreso
  
         return $sw;
     }
- 
-     
     //Implementamos un método para anular categorías
     public function anular($idingreso)
     {
@@ -52,7 +48,8 @@ Class Ingreso
  
     public function listarDetalle($idingreso)
     {
-        $sql="SELECT di.idingreso,di.idarticulo,a.nombre,di.cantidad,di.precio_compra,di.precio_venta,i.neto as neto,i.iva,i.total_final FROM detalle_ingreso di inner join articulo a on di.idarticulo=a.idarticulo 
+        $sql="SELECT di.idingreso,di.idarticulo,a.nombre,di.cantidad,di.precio_compra,di.precio_venta 
+          FROM detalle_ingreso di inner join articulo a on di.idarticulo=a.idarticulo 
             inner join ingreso i on i.idingreso = di.idingreso
             where di.idingreso='$idingreso'" 
 
@@ -63,7 +60,7 @@ Class Ingreso
     //Implementar un método para listar los registros
     public function listar()
     {
-        $sql="SELECT i.idingreso,DATE(i.fecha_hora) as fecha,i.idproveedor,p.nombre as proveedor,p.apellido, u.idusuario,u.nombre as usuario,u.apellido as apellido_u,i.num_comprobante,i.total_compra,i.neto,i.iva,i.total_final,i.estado FROM ingreso i INNER JOIN persona p ON i.idproveedor=p.idpersona INNER JOIN usuario u ON i.idusuario=u.idusuario ORDER BY i.idingreso desc";
+        $sql="SELECT i.idingreso,DATE(i.fecha_hora) as fecha,i.idproveedor,p.nombre as proveedor,p.apellido, u.idusuario,u.nombre as usuario,u.apellido as apellido_u,i.num_comprobante,i.total_compra,i.estado FROM ingreso i INNER JOIN persona p ON i.idproveedor=p.idpersona INNER JOIN usuario u ON i.idusuario=u.idusuario ORDER BY i.idingreso desc";
         return ejecutarConsulta($sql);      
     }
      

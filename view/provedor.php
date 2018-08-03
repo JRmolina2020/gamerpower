@@ -1,22 +1,24 @@
 <?php
 require 'header.php';
 ?>
-<div class="content-wrapper">        
-  <!-- Main content -->
+<div class="content-wrapper">
+  <!-- section articulos-->
   <section class="content">
     <div class="row">
       <div class="col-md-12">
-        <div class="box">
-           <div class="box-header with-border">
-             <a class="btn btn-default btn-sm" data-toggle="modal" href='#modal'>Nuevo
-              <i class="fa fa-plus"></i>
-             </a>
-             
-            <div class="box-tools pull-right">
-            </div>
-          </div>
-          <div class="panel-body table-responsive" id="divlistadop">
-            <table id="listadop" class="table table-striped table-bordered table-condensed table-hover">
+          <div class="panel-body">
+            <!-- menu tab custom -->
+            <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs pull-right">
+              <li><a href="#nuevox" onclick="mostrardivimagen()" data-toggle="tab">Nuevo</a></li>
+                <li class="active"><a href="#listax" data-toggle="tab">Listado</a></li>
+              <li class="pull-left header"><i class="fa fa-inbox"></i>Proveedor</li>
+            </ul>
+            <div class="tab-content no-padding">
+              <!-- listado -->
+              <div class="chart tab-pane active" id="listax" style="position: relative;height: 100%;">
+             <div class="panel-body table-responsive" id="divlistado">
+           <table id="listadop" class="table  table-bordered">
               <thead>
                 <th>Opciones</th>
                 <th>TD</th>
@@ -29,112 +31,124 @@ require 'header.php';
                   <th>Telefono</th>
                  <th>Correo</th>
               </thead>
-              <tbody>                            
+              <tbody>
               </tbody>
             </table>
           </div>
-             </div>
-              </div><!-- /.col -->
-            </div><!-- /.row -->
-          </section><!-- /.content -->
-        </div>
-  <div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" data-keyboard=”false” tabindex=”-1″  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" role=”dialog”>
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      
-      <div class="modal-body">
-        <!-- INICIO DE FORMULARIO -->
-       <form name="formulario" id="formulario" method="POST">
-             <input type="hidden" id="idpersona" name="idpersona">
-              <input type="hidden" value="provedor" id="tipo_persona" name="tipo_persona">
-             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                 <div class="form-group">
-                <label>Tipo de documento</label>
-                <select name="tipo_documento" id="tipo_documento" class="form-control">
-                   <option value="CC" selected="selected">CC</option>
-                  <option value="TI">TI</option>
-                </select>
-              </div>
-               </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                 <div class="form-group">
-              <label>identificacion:</label>
-              <input type="text" class="form-control" name="num_documento" id="num_documento" placeholder="Identifiacion">
-            </div>   
-               </div>
-             </div>
-              <div class="row">
-                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            </div>
+            <!-- end listado -->
+            <!-- registro -->
+              <div class="chart tab-pane" id="nuevox" style="position: relative; height: 100%;">
+              <div class="panel-body">
+             <!-- body form1-->
+            <div class="box box-primary">
+            <div class="box-header">
+              <i class="ion ion-clipboard"></i>
+              <h5 class="box-title">Registrar Proveedores</h5>
+              <div class="box-body">
+                <!-- form -->
+               <form name="formulario" id="formulario" method="POST">
+               <input type="hidden" id="idpersona" name="idpersona">
+              <input type="hidden" value="provedor" name="tipo_persona" id="tipo_persona">
+                <!-- fila1 -->
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 ">
+                    <div class="form-group">
+                     <label class="control-label">T.Documento</label>
+                      <select name="tipo_documento" id="tipo_documento" class="form-control">
+                        <option value="TI">TI</option>
+                        <option value="CC">CC</option>
+                      </select>
+                     </div>
+                  </div>
+                  <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 ">
                    <div class="form-group">
-                  <label>Nombre:</label>
-                  <input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Nombre del cliente" >
-                </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                     <label class="control-label">#Documento</label>
+                      <input type="text" class="form-control" name="num_documento" id="num_documento"
+                      placeholder="Identifiacion" autofocus>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
                    <div class="form-group">
-                  <label>Apellido:</label>
-                  <input type="text" class="form-control" name="apellido" id="apellido"  placeholder="Apellido del cliente" >
+                     <label class="control-label">Nombre</label>
+                      <input type="text" class="form-control" name="nombre" id="nombre"
+                      placeholder="Nombre">
+                     </div>
+                  </div>
+                   <div class="col-lg-5 col-md-3 col-sm-6 col-xs-12 ">
+                   <div class="form-group">
+                     <label class="control-label">Apellido</label>
+                      <input type="text" class="form-control" name="apellido" id="apellido"
+                      placeholder="Apellido">
+                     </div>
+                  </div>
                 </div>
-               </div>
-             </div>
-            <div class="row">
-              <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                   <label>Ciudad:</label>
-                  <select name="ciudad" id="ciudad" class="form-control" onchange="ciudadvalidate()">
-                  
+                <!-- fila2 -->
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 ">
+                   <div class="form-group">
+                     <label class="control-label">Ciudad</label>
+                     <select name="ciudad" id="ciudad" class="form-control" onchange="ciudadvalidate()">
                     <option value="VALLEDUPAR">Valledupar</option>
                     <option value="MEDELLIN" >Medellin</option>
-                 
                   </select>
-                   </div>
                   </div>
-                <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                 <label>Barrio:</label>
-                 <select id="barrio" name="barrio" class="form-control"></select>
-                  </div>
-
-                 <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                   <label>Direccion:</label>
-                  <input type="text" class="form-control" name="direccion" id="direccion"  placeholder="Direccion" >
-                   </div>
-                  </div>
-                 </div>
-              <div class="row">
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <label>Telefono:</label>
-                 <div class="form-group">
-                    <input type="text" class="form-control" name="telefono" id="telefono"  placeholder="Telefono" >
-                   </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                 <div class="form-group">
-                  <label>Correo:</label>
-                  <input type="email" class="form-control" name="email" id="email"  placeholder="Ejemplo:OutJ66@gmail.com" >
                 </div>
-               </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 ">
+                <div class="form-group">
+                 <label class="control-label">Barrio</label>
+                   <select id="barrio" name="barrio" class="form-control"></select>
+                 </div>
+                </div>
+                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
+                   <div class="form-group">
+                     <label class="control-label">Direccion</label>
+                      <input type="text" class="form-control" name="direccion" id="direccion"
+                      placeholder="Direccion">
+                     </div>
+                  </div>
+                  <div class="col-lg-2 col-md-5 col-sm-6 col-xs-12 ">
+                   <div class="form-group">
+                     <label class="control-label">Telefono</label>
+                      <input type="text" class="form-control" name="telefono" id="telefono"
+                      placeholder="telefono">
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-5 col-sm-6 col-xs-12 ">
+                   <div class="form-group">
+                     <label class="control-label">@Gmail</label>
+                      <input type="email" class="form-control" name="email" id="email"
+                      placeholder="Correo electronico">
+                     </div>
+                  </div>
+              </div>
+                 <br><br>
+              <!-- end box-body -->
+              <div class="form-group">
+                <button type="button" onclick="cerrarformulario()" class="btn btn-danger pull-left">Cancelar</button>
+                <button type="submit" class="btn btn-success pull-right">Guardar</button>
+              </div>
+                <!-- end form -->
              </div>
-          <!-- END DE FORMULARIO -->
-      </div>
-      <div class="modal-footer">
-         <button type="submit" id="btnGuardar" name="btnGuardar" class="btn btn-primary btn-md ">
-          <span class="fa fa-save" aria-hidden="true"></span>
-        </button>
-        <button type="button" onclick="cerrarformulario()" class="btn btn-danger btn-md" data-dismiss="modal">
-           <span class="fa fa-close" aria-hidden="true"></span>
-        </button>
-      </div>
-      </form>
-    </div>
-  </div>
-   </div>
- </div>
+             </div>
+           </div>
+           </div>
+            </form>
+          </div>
+        </div>
+             </div>
+              </div>
+
+          </section>
+        </div>
+
         <?php
         require 'footer.php';
         ?>
    <script type="text/javascript" src="scripts/persona.js"></script>
-         
+
+
+
+
 
 

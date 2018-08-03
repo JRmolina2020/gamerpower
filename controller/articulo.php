@@ -1,14 +1,14 @@
 <?php 
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
 require_once "../model/Articulo.php";
-
 $articulo=new Articulo();
-
 $idarticulo=isset($_POST["idarticulo"])? limpiarCadena($_POST["idarticulo"]):"";
 $idcategoria=isset($_POST["idcategoria"])? limpiarCadena($_POST["idcategoria"]):"";
 $codigo=isset($_POST["codigo"])? limpiarCadena($_POST["codigo"]):"";
 $nombre=isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
 $stock=isset($_POST["stock"])? limpiarCadena($_POST["stock"]):"";
 $descripcion=isset($_POST["descripcion"])? limpiarCadena($_POST["descripcion"]):"";
+$condicion=isset($_POST["condicion"])? limpiarCadena($_POST["condicion"]):"";
 $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
 
 switch ($_GET["op"]){
@@ -28,36 +28,24 @@ switch ($_GET["op"]){
 			}
 		}
 		if (empty($idarticulo)){
-			$rspta=$articulo->insertar($idcategoria,$codigo,$nombre,$stock,$descripcion,$imagen);
+			$rspta=$articulo->insertar($idcategoria,$codigo,$nombre,$descripcion,$imagen,$condicion);
 			echo $rspta ? "Artículo registrado" : "Artículo no se pudo registrar";
 		}
 		else {
-			$rspta=$articulo->editar($idarticulo,$idcategoria,$codigo,$nombre,$stock,$descripcion,$imagen);
+			$rspta=$articulo->editar($idarticulo,$idcategoria,$codigo,$nombre,$stock,$descripcion,$imagen,$condicion);
 			echo $rspta ? "Artículo actualizado" : "Artículo no se pudo actualizar";
 		}
 	break;
 
-	case 'desactivar':
-		$rspta=$articulo->desactivar($idarticulo);
- 		echo $rspta ? "Artículo Desactivado" : "Artículo no se puede desactivar";
- 		break;
+	
+	case 'eliminar':
+	$rspta=$articulo->eliminar($idarticulo);
+	echo $rspta ? "Artículo eliminado" : "Artículo no se puede eliminar";
 	break;
-
-	case 'activar':
-		$rspta=$articulo->activar($idarticulo);
- 		echo $rspta ? "Artículo activado" : "Artículo no se puede activar";
- 		break;
-	break;
-		case 'eliminar':
-		$rspta=$articulo->eliminar($idarticulo);
- 		echo $rspta ? "Artículo eliminado" : "Artículo no se puede eliminar";
- 		break;
 
 	case 'mostrar':
-		$rspta=$articulo->mostrar($idarticulo);
- 		//Codificar el resultado utilizando json
- 		echo json_encode($rspta);
- 		break;
+	$rspta=$articulo->mostrar($idarticulo);
+ 	echo json_encode($rspta);
 	break;
 
 	case 'listar':
@@ -68,25 +56,26 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
  				"0"=>($_SESSION['cargo']=='ADMIN')?
-
- 				'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idarticulo.')">
+ 				'<button type="button" class="btn btn-success btn-flat margin btn-xs" onclick="mostrar('.$reg->idarticulo.')">
  				<i class="fa fa-pencil"></i></button>'.
- 				' <button class="btn btn-danger  btn-xs" onclick="eliminar('.$reg->idarticulo.')">
+ 				'<button type="button" class="btn btn-danger btn-flat margin  btn-xs" onclick="eliminar('.$reg->idarticulo.')">
  				<i class="fa fa-trash"></i></button>':
  				// _______________________________________________________________________
- 				'<button class="btn btn-warning btn-xs" onclick="permiso()">
+ 			  '<button type="button" class="btn btn-success btn-flat margin  btn-xs" onclick="permiso()">
  				<i class="fa fa-pencil"></i></button>'.
- 				' <button class="btn btn-danger  btn-xs" onclick="permiso()">
+ 				'<button type="button" class="btn btn-danger btn-flat margin  btn-xs" onclick="permiso()">
  				<i class="fa fa-trash"></i></button>',
  				"1"=>$reg->categoria,
  				"2"=>$reg->codigo,
  				"3"=>$reg->nombre,
- 				"4"=>$reg->stock,
+ 				"4"=>($reg->stock =="0")?'<span class="label bg-red">Agostado</span>':
+ 				$reg->stock
+ 				,
  				"5"=>$reg->descripcion,
  				"6"=>"<img src='../files/articulo/".$reg->imagen."' height='50px' width='50px' >",
  				"7"=>($reg->condicion)?
- 				'<span class="label bg-green" onclick="desactivar('.$reg->idarticulo.')">Activado</span>':
- 				'<span class="label bg-red" onclick="activar('.$reg->idarticulo.')">Desactivado</span>'
+ 				'<span class="label bg-green">Activado</span>':
+ 				'<span class="label bg-red" >Desactivado</span>'
  				);
  		}
  		$results = array(
@@ -109,5 +98,9 @@ switch ($_GET["op"]){
 					echo '<option value=' . $reg->idcategoria . '>' . $reg->nombre . '</option>';
 				}
 	break;
+}
+}else {
+header("HTTP/1.0 403 Forbidden");
+exit;
 }
 ?>

@@ -18,16 +18,18 @@ Class Consultas
         return ejecutarConsulta($sql);      
     }
  
+    // total de una las compras que se han realizados en el dia actual en el almacen
     public function totalcomprahoy()
     {
-        $sql="SELECT IFNULL(SUM(total_final),0) as total_final FROM ingreso WHERE DATE(fecha_hora)=curdate()
+        $sql="SELECT IFNULL(SUM(total_compra),0) as total_final FROM ingreso WHERE DATE(fecha_hora)=curdate()
          and estado ='Aceptado'";
         return ejecutarConsulta($sql);
     }
  
+ // total de una las ventas que se han realizados en el dia actual en el almacen
     public function totalventahoy()
     {
-        $sql="SELECT IFNULL(SUM(total_final),0) as total_final FROM venta WHERE DATE(fecha_hora)=curdate() 
+        $sql="SELECT IFNULL(SUM(total_venta),0) as total_final FROM venta WHERE DATE(fecha_hora)=curdate() 
         and estado ='Aceptado' ";
         return ejecutarConsulta($sql);
     }
@@ -69,9 +71,7 @@ Class Consultas
      // los 5 productos mas vendidos
      public function productos_mas_vendidos()
     {
-        $sql="SELECT a.nombre as producto,sum(d.cantidad) as comprado,sum(total_venta) as total from articulo a inner join detalle_venta d on d.idarticulo= a.idarticulo inner join venta v on v.idventa = d.idventa 
-            WHERE v.estado='Aceptado'
-        GROUP by producto order by total desc Limit 0,5 ";
+        $sql="SELECT a.nombre as producto,sum(d.cantidad) as comprado,sum(total_venta) as total from articulo a inner join detalle_venta d on d.idarticulo= a.idarticulo inner join venta v on v.idventa = d.idventa WHERE v.estado='Aceptado' GROUP by producto order by comprado desc Limit 0,5";
         return ejecutarConsulta($sql);
     }
 

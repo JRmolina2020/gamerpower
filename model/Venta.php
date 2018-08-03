@@ -9,16 +9,13 @@ Class Venta
     {
  
     }
-
     //Implementamos un método para insertar registros
-    public function insertar($idcliente,$idusuario,$num_comprobante,$fecha_hora,$total_venta
-        ,$neto,$iva,$total_final,
+    public function insertar($idcliente,$idusuario,$num_comprobante,$fecha_hora,$total_venta,
         $idarticulo,$cantidad,$precio_venta,$descuento)
     {
-        $sql="INSERT INTO venta (idcliente,idusuario,num_comprobante,fecha_hora,total_venta,neto,iva,total_final,
+        $sql="INSERT INTO venta (idcliente,idusuario,num_comprobante,fecha_hora,total_venta,
         estado)
-        VALUES ('$idcliente','$idusuario','$num_comprobante','$fecha_hora','$total_venta','$neto',
-        '$iva','$total_final','Aceptado')";
+        VALUES ('$idcliente','$idusuario','$num_comprobante','$fecha_hora','$total_venta','Aceptado')";
         //return ejecutarConsulta($sql);
         $idventanew=ejecutarConsulta_retornarID($sql);
  
@@ -54,7 +51,7 @@ Class Venta
  
     public function listarDetalle($idventa)
     {
-        $sql="SELECT dv.idventa,dv.idarticulo,a.nombre,dv.cantidad,dv.precio_venta,dv.descuento,v.neto,v.iva,v.total_final,
+        $sql="SELECT dv.idventa,dv.idarticulo,a.nombre,dv.cantidad,dv.precio_venta,dv.descuento,
         (dv.cantidad*dv.precio_venta-dv.descuento) as subtotal  FROM detalle_venta dv inner join articulo a on dv.idarticulo=a.idarticulo 
         inner join venta v on v.idventa = dv.idventa
         where dv.idventa='$idventa'";
@@ -64,9 +61,34 @@ Class Venta
     //Implementar un método para listar los registros
     public function listar()
     {
-        $sql="SELECT v.idventa,DATE(v.fecha_hora) as fecha,v.idcliente,p.nombre as cliente,u.idusuario,u.nombre as usuario,v.num_comprobante,v.total_venta,v.neto,v.iva,v.total_final,v.estado FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario ORDER by v.idventa desc";
+        $sql="SELECT v.idventa,DATE(v.fecha_hora) as fecha,v.idcliente,p.nombre as cliente,u.idusuario,u.nombre as usuario,v.num_comprobante,v.total_venta,v.estado FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario ORDER by v.idventa desc";
         return ejecutarConsulta($sql);      
     }
      
+    // tiket venta cabezera
+     public function ventacabecera($idventa)
+    {
+        $sql="SELECT v.idventa, v.fecha_hora as fecha,c.nombre,c.apellido,c.tipo_documento,c.num_documento,v.num_comprobante,
+        v.total_venta
+        FROM persona c 
+        inner join venta v 
+        on v.idcliente = c.idpersona where v.idventa='$idventa'";
+        return ejecutarConsulta($sql);      
+    }
+
+    // tiket detalle
+     public function ventadetalle($idventa)
+    {
+        $sql="
+        SELECT vd.cantidad as cantidad,a.nombre as articulo,vd.cantidad*vd.precio_venta as subtotal,vd.descuento
+            FROM detalle_venta vd 
+            INNER JOIN venta v
+            ON v.idventa = vd.idventa
+            INNER JOIN articulo a
+            ON a.idarticulo = vd.idarticulo
+            WHERE vd.idventa ='$idventa'";
+            return ejecutarConsulta($sql);      
+    }
+
 }
 ?>

@@ -8,15 +8,12 @@
     $idusuario=$_SESSION["idusuario"];
     $num_comprobante=isset($_POST["num_comprobante"])? limpiarCadena($_POST["num_comprobante"]):"";
     $total_compra=isset($_POST["total_compra"])? limpiarCadena($_POST["total_compra"]):"";
-    $neto=isset($_POST["total_neto"])? limpiarCadena($_POST["total_neto"]):"";
-    $iva=isset($_POST["total_iva"])? limpiarCadena($_POST["total_iva"]):"";
-    $total_final=isset($_POST["total_cfinal"])? limpiarCadena($_POST["total_cfinal"]):"";
 
     switch ($_GET["op"]){
         case 'guardaryeditar':
         if (empty($idingreso)){
-            $rspta=$ingreso->insertar($idproveedor,$idusuario,$num_comprobante,$fecha_hora,$total_compra,$neto,
-                $iva,$total_final,
+            $rspta=$ingreso->insertar($idproveedor,$idusuario,$num_comprobante,$fecha_hora,$total_compra,
+             
                 $_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_compra"],$_POST["precio_venta"]);
             echo $rspta ? "Ingreso registrado" : "No se pudieron registrar todos los datos del ingreso";
         }
@@ -63,28 +60,17 @@
             <td>'.$reg->precio_compra*$reg->cantidad.'</td>
             </tr>';
             $total=$total+($reg->precio_compra*$reg->cantidad);
-            $neto = $total;
-            $ivar =$reg->iva;
-            $tot =$reg->total_final;
-
+         
         }
         echo 
         '<tfoot>
-         <th>
-         TOTAL
-        <br>
-        $NETO<br>
-        IVA 18%<br>
-        TOTAL COMPRA</th>
+        <th>TOTAL</th>
         <th></th>
         <th></th>
         <th></th>
         <th></th>
         <th>
-        <h5 style="color:#298A08"  id="total">S/.'.$total.'</h4><input type="hidden" name="total_compra" id="total_compra">
-        <h5 style="color:#298A08"  id="neto">S/.'.$neto.'</h4><input type="hidden" name="total_neto" id="total_neto">
-        <h5 style="color:#298A08"  id="iva">S/.'.$ivar.'</h4><input type="hidden" name="total_iva" id="total_iva">
-        <h5  style="color:#DF0101" id="totalfinal">S/.'.$tot.'</h4><input type="hidden" name="total_cfinal" id="total_cfinal">
+        <h5 style="color:#ee1616"  id="total">$/'.$total.'</h4><input type="hidden" name="total_compra" id="total_compra">
         </th> 
         </tfoot>';
         break;
@@ -96,18 +82,15 @@
 
         while ($reg=$rspta->fetch_object()){
             $data[]=array(
-                "0"=>($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idingreso.')"><i class="fa fa-eye"></i></button>'.
-                ' <button class="btn btn-danger btn-xs " onclick="anular('.$reg->idingreso.')"><i class="fa fa-close"></i></button>':
-                '<button class="btn btn-warning btn-xs " onclick="mostrar('.$reg->idingreso.')"><i class="fa fa-eye"></i></button>',
+                "0"=>($reg->estado=='Aceptado')?'<button class="btn btn-success btn-xs" onclick="mostrar('.$reg->idingreso.')"><i class="fa fa-eye"></i></button>'.
+                ' <button class="btn btn-danger btn-xs " onclick="anular('.$reg->idingreso.')"><i class="fa fa-trash"></i></button>':
+                '<button class="btn btn-success btn-xs " onclick="mostrar('.$reg->idingreso.')"><i class="fa fa-eye"></i></button>',
                 "1"=>$reg->fecha,
                 "2"=>$reg->proveedor.'  '.$reg->apellido,
                 "3"=>$reg->usuario .' '. $reg->apellido_u,
                 "4"=>$reg->num_comprobante,
                 "5"=>$reg->total_compra,
-                "6"=>$reg->neto,
-                "7"=>$reg->iva,
-                "8"=>$reg->total_final,
-                "9"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
+                "6"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
                 '<span class="label bg-red">Anulado</span>'
             );
         }
@@ -142,7 +125,8 @@
 
         while ($reg=$rspta->fetch_object()){
             $data[]=array(
-                "0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idarticulo.',\''.$reg->nombre.'\')"><span class="fa fa-plus"></span></button>',
+                "0"
+                =>'<button class="btn btn-success btn-xs" onclick="agregarDetalle('.$reg->idarticulo.',\''.$reg->nombre.'\')"><span class="fa fa-shopping-cart"></span></button>',
                 "1"=>$reg->nombre,
                 "2"=>$reg->categoria,
                 "3"=>$reg->codigo,

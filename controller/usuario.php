@@ -68,7 +68,7 @@ if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['im
 	 		while ($reg=$rspta->fetch_object()){
 	 			$data[]=array(
 	 				"0"=>
-	 				'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idusuario.')">
+	 				'<button class="btn btn-success btn-xs" onclick="mostrar('.$reg->idusuario.')">
 	 				<i class="fa fa-pencil"></i></button>'.
 	                ' <button class="btn btn-danger btn-xs"  onclick="eliminar('.$reg->idusuario.')">
 	                <i class="fa fa-trash"></i></button>',
@@ -83,16 +83,15 @@ if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['im
 	 			    "9"=>($reg->condicion==1)?
 	 			        '<span onclick="bloquear('.$reg->idusuario.','.$reg->condicion.')"class="label label-success">Activo</span>':
 	 			        '<span onclick="bloquear('.$reg->idusuario.','.$reg->condicion.')"class="label label-danger">bloqueado</span>'
-
 	 				);
 
 	 			} 
-				 		$results = array(
-				 			"sEcho"=>1, //Información para el datatables
-				 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
-				 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
-				 			"aaData"=>$data);
-				 		echo json_encode($results);
+		 		$results = array(
+		 			"sEcho"=>1, //Información para el datatables
+		 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+		 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+		 			"aaData"=>$data);
+		 		echo json_encode($results);
 
 	break;
 
@@ -120,5 +119,15 @@ if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['im
  
 echo json_encode($fetch);
 break;
+
+case 'salir':
+        //Limpiamos las variables de sesión   
+        session_unset();
+        //Destruìmos la sesión
+        session_destroy();
+        //Redireccionamos al login
+        header("Location: ../index.php");
+ 
+    break;
 }
 ?>
