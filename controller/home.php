@@ -1,5 +1,4 @@
 <?php
-
 require_once "../model/Consultas.php";
 $consulta = new Consultas();
   // mostrar el total de las comprar en el dia actual
@@ -61,8 +60,6 @@ $totalesv=substr($totalesv, 0, -1);
     require_once"../model/Consultas.php";
       $consulta=new Consultas();
     $rsptapm=$consulta->productos_mas_vendidos();
-
- 	
 
 ?>
 

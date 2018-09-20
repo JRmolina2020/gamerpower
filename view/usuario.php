@@ -156,7 +156,9 @@ require 'header.php';
                </div>
              </div>
              <div id="imagendefecto">
-               <img src="../public/images/icon_user.png" class="img-responsive" alt="Image">
+              <center>
+              <img src="../public/images/icon_user.png" width="150" height="150" class="img-responsive" alt="Image">
+            </center>
              </div>
              <div id="imagenvisual" class="box-body">
              </div>

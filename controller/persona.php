@@ -1,5 +1,7 @@
 <?php 
 require_once "../model/Persona.php";
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
+
 $persona=new Persona();
 $idpersona=isset($_POST["idpersona"])? limpiarCadena($_POST["idpersona"]):"";
 $tipo_persona=isset($_POST["tipo_persona"])? limpiarCadena($_POST["tipo_persona"]):"";
@@ -108,5 +110,9 @@ switch ($_GET["op"]){
  
     break;
 
+}
+}else {
+header("HTTP/1.0 403 Forbidden");
+exit;
 }
 ?>

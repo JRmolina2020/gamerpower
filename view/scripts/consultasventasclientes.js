@@ -31,7 +31,7 @@ function listar()
                 ],
         "ajax":
                 {
-                    url: '../controller/consultas.php?op=ventasfechacliente',
+                    url: '../controller/ventasfechacliente.php?op=ventasfechacliente',
                     data:{fecha_inicio: fecha_inicio,fecha_fin: fecha_fin, idcliente: idcliente},
                     type : "get",
                     dataType : "json",                      
@@ -44,6 +44,5 @@ function listar()
         "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
     }).DataTable();
 }
- 
- 
+
 init();

@@ -1,8 +1,6 @@
 <?php 
-
-
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
 require_once "../model/Venta.php";
-
 $venta=new Venta();
 $idventa=isset($_POST["idventa"])? limpiarCadena($_POST["idventa"]):"";
 $idcliente=isset($_POST["idcliente"])? limpiarCadena($_POST["idcliente"]):"";
@@ -11,15 +9,15 @@ $num_comprobante=isset($_POST["num_comprobante"])? limpiarCadena($_POST["num_com
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
 $total_venta=isset($_POST["total_venta"])? limpiarCadena($_POST["total_venta"]):"";
 
-
 switch ($_GET["op"]){
     case 'guardaryeditar':
     if (empty($idventa)){
         $rspta=$venta->insertar($idcliente,$idusuario,$num_comprobante,$fecha_hora,$total_venta,
             $_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_venta"],$_POST["descuento"]);
-        echo $rspta ? "Venta registrada" : "No se pudieron registrar todos los datos de la venta";
+      
     }
     else {
+     echo $rspta ? "Venta registrada" : "No se pudieron registrar todos los datos de la venta";
     }
     break;
     
@@ -140,5 +138,9 @@ switch ($_GET["op"]){
             "aaData"=>$data);
     echo json_encode($results);
     break;
+}
+}else {
+header("HTTP/1.0 403 Forbidden");
+exit;
 }
 ?>

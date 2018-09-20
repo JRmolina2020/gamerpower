@@ -1,8 +1,7 @@
 <?php 
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
 require_once "../model/cliente.php";
-
 $cliente=new Cliente();
-
 $idcliente=isset($_POST["idcliente"])? limpiarCadena($_POST["idcliente"]):"";
 $cedula=isset($_POST["cedula"])? limpiarCadena($_POST["cedula"]):"";
 $nombre=isset($_POST["nombre"])? limpiarCadena($_POST["nombre"]):"";
@@ -92,5 +91,9 @@ switch ($_GET["op"]){
 	break;
 
 	
+}
+}else {
+header("HTTP/1.0 403 Forbidden");
+exit;
 }
 ?>

@@ -1,7 +1,9 @@
     <?php 
+
+    if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
+
     require_once "../model/Ingreso.php";
     $ingreso=new Ingreso();
-
     $idingreso=isset($_POST["idingreso"])? limpiarCadena($_POST["idingreso"]):"";
     $idproveedor=isset($_POST["idproveedor"])? limpiarCadena($_POST["idproveedor"]):"";
     $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
@@ -10,14 +12,15 @@
     $total_compra=isset($_POST["total_compra"])? limpiarCadena($_POST["total_compra"]):"";
 
     switch ($_GET["op"]){
+        
         case 'guardaryeditar':
         if (empty($idingreso)){
             $rspta=$ingreso->insertar($idproveedor,$idusuario,$num_comprobante,$fecha_hora,$total_compra,
-             
-                $_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_compra"],$_POST["precio_venta"]);
-            echo $rspta ? "Ingreso registrado" : "No se pudieron registrar todos los datos del ingreso";
+            $_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_compra"],$_POST["precio_venta"]);
+           
         }
         else {
+         echo $rspta ? "Ingreso registrado" : "No se pudieron registrar todos los datos del ingreso";
         }
         break;
 
@@ -142,4 +145,8 @@
         echo json_encode($results);
         break;
     }
+    }else {
+    header("HTTP/1.0 403 Forbidden");
+      exit;
+      }
     ?>

@@ -129,7 +129,7 @@ require 'header.php';
               <div id="cuadritoimagen" class="box-body">
                     <input type="hidden" name="imagenactual" id="imagenactual">
                     <center>
-                    <img src="" width="98px" height="102px" id="imagenmuestra">
+                    <img src="" width="78px" height="82px" id="imagenmuestra">
                    </center>
 
              </div>

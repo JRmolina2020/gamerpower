@@ -6,7 +6,7 @@ if (isset($_SESSION["nombre"]))
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link href="ticket.css" rel="stylesheet" type="text/css">
+<link href="../public/css/ticket.css" rel="stylesheet" type="text/css">
 </head>
 <body onload="window.print();">
 <?php
@@ -26,7 +26,6 @@ $documento = "9281 DIAN";
 $direccion = "GALERIA LOCAL #5,SEGUNDO PISO    ";
 $telefono = "3006754499";
 $email = "GAMER@GMAIL.COM";
- 
 ?>
 <div class="zona_impresion">
 <!-- codigo imprimir -->
@@ -91,8 +90,6 @@ $email = "GAMER@GMAIL.COM";
     <td>&nbsp;</td>
     <td><b>TOTAL:$/<?php echo $reg->total_venta;?></b></td>
     </tr>
-
-    
     <tr>
       <td colspan="3"># de artículos: <?php echo $cantidad; ?></td>
     </tr>

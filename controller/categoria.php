@@ -1,4 +1,5 @@
 <?php 
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
 require_once"../model/Categoria.php";
 $categoria=new Categoria();
 $idcategoria=isset($_POST["idcategoria"])? limpiarCadena($_POST["idcategoria"]):"";
@@ -74,5 +75,9 @@ switch ($_GET["op"]){
  		echo json_encode($results);
 
 	break;
+}
+}else {
+header("HTTP/1.0 403 Forbidden");
+exit;
 }
 ?>

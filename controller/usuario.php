@@ -1,4 +1,5 @@
 <?php 
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
 require_once "../model/usuario.php";
 $usuario=new Usuario();
 $idusuario=isset($_POST["idusuario"])? limpiarCadena($_POST["idusuario"]):"";
@@ -129,5 +130,9 @@ case 'salir':
         header("Location: ../index.php");
  
     break;
+}
+}else {
+header("HTTP/1.0 403 Forbidden");
+exit;
 }
 ?>

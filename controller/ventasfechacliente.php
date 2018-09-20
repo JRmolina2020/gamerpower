@@ -2,8 +2,6 @@
 require_once "../model/Consultas.php";
  
 $consulta=new Consultas();
- 
- 
 switch ($_GET["op"]){
     
     case 'ventasfechacliente':
