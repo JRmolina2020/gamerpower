@@ -131,7 +131,6 @@ require 'header.php';
                     <center>
                     <img src="" width="78px" height="82px" id="imagenmuestra">
                    </center>
-
              </div>
              <!-- barcode -->
               <div id="print">
@@ -141,13 +140,6 @@ require 'header.php';
                 <!-- end barcode -->
                </div>
              </div>
-             <div id="imagendefecto">
-               <img src="../public/images/icon_producto.png" class="img-responsive" alt="Image">
-             </div>
-             <!-- aqui se carga la imagen que seleccionamos de nuestro folder -->
-             <div id="imagenvisual" class="box-body">
-             </div>
-             <!-- end -->
              </div>
              </div>
            </div>
@@ -169,7 +161,7 @@ require 'header.php';
   <script type="text/javascript" src="../public/js/JsBarcode.all.min.js"></script>
   <script type="text/javascript" src="../public/js/jquery.PrintArea.js"></script>
    <script type="text/javascript" src="scripts/articulo.js"></script>
-   <script type="text/javascript" src="../public/js/carga_imagen.js"></script>
+
  
 
 

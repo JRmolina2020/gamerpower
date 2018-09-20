@@ -117,7 +117,7 @@ require 'header.php';
                     <div class="col-lg-9 col-md-9 col-xs-12 col-sm-7">
                       <div class="form-group">
                      <label class="control-label">Presentaciòn</label>
-                    <input type="file" onclick="ocultardivimagen()" class="form-control" name="imagen" id="imagen">
+                    <input type="file" class="form-control" name="imagen" id="imagen">
                      </div>
                     </div>
                      <div class="col-lg-3 col-md-3 col-xs-12 col-sm-5">
@@ -155,13 +155,6 @@ require 'header.php';
              </div>
                </div>
              </div>
-             <div id="imagendefecto">
-              <center>
-              <img src="../public/images/icon_user.png" width="150" height="150" class="img-responsive" alt="Image">
-            </center>
-             </div>
-             <div id="imagenvisual" class="box-body">
-             </div>
              </div>
              </div>
            </div>
@@ -181,8 +174,7 @@ require 'header.php';
         require 'footer.php';
         ?>
    <script type="text/javascript" src="scripts/usuario.js"></script>
-   <script type="text/javascript" src="../public/js/carga_imagen.js"></script>
- 
+  
 
 
 

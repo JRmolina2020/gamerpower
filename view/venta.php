@@ -117,7 +117,7 @@ require 'header.php';
         <!-- en este modal se listaran todos los productos
         los cuales vamos a vender  -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -128,9 +128,9 @@ require 'header.php';
             <thead>
               <th>Opciones</th>
               <th>Nombre</th>
-              <th>Categoría</th>
               <th>Código</th>
               <th>Stock</th>
+              <th>Precio venta</th>
               <th>Imagen</th>
             </thead>
             <tbody>
@@ -138,9 +138,9 @@ require 'header.php';
             <tfoot>
               <th>Opciones</th>
               <th>Nombre</th>
-              <th>Categoría</th>
               <th>Código</th>
               <th>Stock</th>
+              <th>Precio venta</th>
               <th>Imagen</th>
             </tfoot>
           </table>

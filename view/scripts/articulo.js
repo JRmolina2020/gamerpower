@@ -242,14 +242,6 @@ ocultardivimagen();
 
 }
 
-function mostrardivimagen(){
-$("#imagendefecto").show();
-$("#imagenvisual").show();
-$("#divstock").hide();
-
-}
-
-
 function ocultardivimagen(){
 $("#imagendefecto").hide();
 $("#imagenvisual").empty();

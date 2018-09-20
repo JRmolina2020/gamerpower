@@ -124,11 +124,10 @@ switch ($_GET["op"]){
         $data[]=array(
             "0"=>'<button class="btn btn-success btn-xs" onclick="agregarDetalle('.$reg->idarticulo.',\''.$reg->nombre.'\',\''.$reg->precio_venta.'\')"><span class="fa fa-shopping-cart"></span></button>',
             "1"=>$reg->nombre,
-            "2"=>$reg->categoria,
-            "3"=>$reg->codigo,
-            "4"=>$reg->stock,
-            "5"=>$reg->precio_venta,
-            "6"=>"<img src='../files/articulo/".$reg->imagen."' height='50px' width='50px' >"
+            "2"=>$reg->codigo,
+            "3"=>$reg->stock,
+            "4"=>$reg->precio_venta,
+            "5"=>"<img src='../files/articulo/".$reg->imagen."' height='50px' width='50px' >"
         );
     }
     $results = array(

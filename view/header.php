@@ -17,7 +17,6 @@ if (!isset($_SESSION['correo'])) {
 	<link rel="stylesheet" href="../public/css/_all-skins.min.css">
 	<link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
 	<link rel="shortcut icon" href="../public/img/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="../public/css/generalestilos.css">
 	<!-- DATATABLES -->
 	<link rel="stylesheet" type="text/css" href="../public/datatables/jquery.dataTables.min.css">    
 	<link href="../public/datatables/buttons.dataTables.min.css" rel="stylesheet"/>
@@ -29,8 +28,6 @@ if (!isset($_SESSION['correo'])) {
 	<!-- alert -->
 	<link rel="stylesheet" type="text/css" href="../public/css/sweetalert2.min.css">
 	<!-- DIV carga de imagen -->
-	<link rel="stylesheet" type="text/css" href="../public/css/carga_imagen.css">
-	<!--  -->
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 	<div class="wrapper">
@@ -64,21 +61,11 @@ if (!isset($_SESSION['correo'])) {
 					<li class="header"><?php echo $_SESSION['cargo']?></li>
 					<!-- ________________________________________ -->
 
+                   <?php if ($_SESSION['cargo']=="ADMIN") {?>
 					<li class="treeview">
 						<a href="home.php">
 							<i class="fa fa-home"></i> <span>Inicio</span>
 						</a>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-truck"></i> <span>Compras</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="ingreso.php"><i class="fa fa-shopping-cart "></i>Nueva compra</a></li>
-						</ul>
 					</li>
 					<li class="treeview">
 						<a href="#">
@@ -91,8 +78,19 @@ if (!isset($_SESSION['correo'])) {
 							<li><a href="venta.php"><i class="fa fa-cart-plus "></i>Nueva venta</a></li>
 						</ul>
 					</li>
-
-
+					
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-truck"></i> <span>Compras</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="ingreso.php"><i class="fa fa-shopping-cart "></i>Nueva compra</a></li>
+						</ul>
+					</li>
+					
 					<li class="treeview">
 						<a href="#">
 							<i class="fa fa-user"></i> <span>Contactos</span>
@@ -138,14 +136,7 @@ if (!isset($_SESSION['correo'])) {
 							</span>
 						</a>
 						<ul class="treeview-menu">
-							<?php if ($_SESSION['cargo']=='ADMIN'){
-								echo'
 								<li><a href="usuario.php"><i class="fa fa-users"></i>Usuarios</a></li>';
-								
-							}else{
-								echo '
-								<li><a><i class="fa fa-users"></i>Vendedor</a></li>';
-							}?>
 						</ul>
 					</li>
 					<li class="treeview">
@@ -153,7 +144,32 @@ if (!isset($_SESSION['correo'])) {
 							<i class="fa fa-times"></i> <span>Salir</span>
 						</a>
 					</li>
+
+				<?php }
+				elseif ($_SESSION["cargo"]!="ADMIN") { ?>
+				<li class="treeview">
+						<a href="home.php">
+							<i class="fa fa-home"></i> <span>Inicio</span>
+						</a>
+					</li>
+				<li class="treeview">
+						<a href="#">
+							<i class="fa fa-cc-visa"></i> <span>Ventas</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="venta.php"><i class="fa fa-cart-plus "></i>Nueva venta</a></li>
+						</ul>
+					</li>
+            
+				<?php	
+				}
+				?>
 				</ul>
+				
+
 			</section>
 		</aside>
 

@@ -353,16 +353,7 @@ $("#div-muestra").hide();
 ocultardivimagen();
 }
 
-function mostrardivimagen(){
-$("#imagendefecto").show();
-$("#imagenvisual").show();
-$("#identi").focus();
-}
 
-function ocultardivimagen(){
-$("#imagendefecto").hide();
-$("#imagenvisual").empty();
-}
 
 init();
 
