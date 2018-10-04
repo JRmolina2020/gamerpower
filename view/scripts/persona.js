@@ -55,7 +55,6 @@ function listarp()
 
 // funcion para listar a los clientes
 function listar()
-
 {
 	 tabla=$('#listado').dataTable(
 	{
@@ -90,24 +89,30 @@ function guardaryeditar(e)
 $('#formulario') .bootstrapValidator({
 	message: 'This value is not valid',
 	fields: {
-num_documento: {
+     num_documento: {
 			row: '.col-xs-4',
 			message: 'Identificacion invalida',
 			validators: {
 				notEmpty: {
-					message: 'La identifiacion es obligatoria y no puede estar vacia'
+					message: 'Numero de documento invalido,no puede estar vacio'
 				},
 				integer: {
-                        message: 'Digite un numero valido',
+                        message:'Digite un numero valido',
                          thousandsSeparator: '',
                             decimalSeparator: '.'
                     },
 
 				stringLength: {
-					min: 9,
-					max: 11,
-					message: 'Minimo 9 caracteres y Maximo 11'
+					min: 8,
+					max: 12,
+					message: 'Minimo 8 digitos y Maximo 12 diitos'
 				},
+				between: {
+                            min: 1,
+                            max: 999999999999,
+                            message: 'El primer digito debe ser  mayor a 0 y debe ser menor a 999999999999'
+                        },
+
 						regexp: {
 						regexp: /^[a-zA-Z0-9_\.]+$/,
 						message: 'No se permiten espacios',
@@ -117,10 +122,10 @@ num_documento: {
 		},
 
 		nombre: {
-			message: 'Nombre del acliente invalido',
+			message: 'Nombre invalido',
 			validators: {
 				notEmpty: {
-					message: 'El nombre  es obligatorio y no puede estar vacio.'
+					message: 'El nombre  es obligatorio,no puede estar vacio.'
 				},
 				
                     regexp: {
@@ -128,17 +133,17 @@ num_documento: {
                         message: 'Ingrese un nombre correcto,no se aceptan valores numericos'
                     },
 				stringLength: {
-					min: 5,
+					min: 3,
 					max: 30,
-					message: 'Minimo 5 caracteres y Maximo 30 '
+					message: 'Minimo 3 caracteres y Maximo 30 caracteres'
 				},
 			}
 		},
 		apellido: {
-			message: 'Apellido del acliente invalido',
+			message: 'Apellido invalido',
 			validators: {
 				notEmpty: {
-					message: 'El Apellido es obligatorio y no puede estar vacio.'
+					message: 'El Apellido es obligatorio,no puede estar vacio.'
 				},
 				
                     regexp: {
@@ -146,41 +151,41 @@ num_documento: {
                         message: 'Ingrese un Apellido correcto,no se aceptan valores numericos'
                     },
 				stringLength: {
-					min: 5,
+					min: 3,
 					max: 30,
-					message: 'Minimo 5 caracteres y Maximo 30 '
+					message: 'Minimo 3 caracteres y Maximo 30 caracteres'
 				},
 			}
 		},
 		direccion: {
-			message: 'Direccion del cliente invalido',
+			message: 'Direccion invalida',
 			validators: {
 				notEmpty: {
-					message: 'La direccion es obligatoria y no puede estar vacia.'
+					message: 'La direccion es obligatoria,no puede estar vacia.'
 				},
 				
 				stringLength: {
-					min: 8,
-					max: 40,
-					message: 'Minimo 8 caracteres y Maximo 40 '
+					min: 6,
+					max: 30,
+					message: 'Minimo 6 caracteres y Maximo 30 caracteres '
 				},
 			}
 		},
 		
 		telefono: {
-			message: 'telefono del cliente invalido',
+			message:'telefono invalido',
 			validators: {
 				notEmpty: {
-					message: 'El Telefono es obligatorio'
+					message: 'El Telefono es obligatorio,no puede estar vacio'
 				},
 				 numeric: {
-                            message: 'Solo valores numericos',
+                            message: 'Solo se aceptan valores numericos',
                             
                         },
 				stringLength: {
-					min: 5,
-					max: 12,
-					message: 'Minimo 5 caracteres y Maximo 12 caracteres '
+					min: 7,
+					max: 10,
+					message: 'Minimo 7 digitos y Maximo 10 digitos'
 				},
 						regexp: {
 						regexp: /^[a-zA-Z0-9_\.]+$/,
@@ -190,26 +195,25 @@ num_documento: {
 			}
 		},
 		email: {
-			message: 'correo del usuario invalido',
+			message:'correo invalido',
 			validators: {
 				notEmpty: {
-					message: 'El correo es obligatorio'
+					message: 'El correo es obligatorio,no puede estar vacio'
 				},
 				 emailAddress: {
-                        message: 'Ingrese un correo valido'
+                        message: 'Ingrese un correo valido,que cumpla con el estandar'
                     },
 
 
 				stringLength: {
-					min: 8,
-					max: 30,
-					message: 'Minimo 8 caracteres y Maximo 30 caracteres '
+					min: 15,
+					max: 50,
+					message: 'Minimo 15 caracteres y Maximo 50 caracteres '
 				}
 				
 			}
 		},
 
-          
 	}
 })
 

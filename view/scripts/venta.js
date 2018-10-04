@@ -3,8 +3,8 @@ var tabla;
 
  function init(){
 	guardaryeditar();
-	listar();
   fecha_actual();
+	listar();
   listarArticulos();
 	// cargamos el objecto select con nuestros clientes
 	 $.post("../controller/venta.php?op=selectCliente", function(r){
@@ -18,6 +18,7 @@ var tabla;
 function activar(){
  $("#btnGuardar").hide();
  $("#btnAgregarArt").show();
+ fecha_actual();
 }
 //Función limpiar 
 function limpiar()
@@ -31,6 +32,7 @@ function limpiar()
   $("#neto").html("0.000");
   $("#iva").html("0.000");
   $("#totalfinal").html("0.000");
+  $('#formulario').bootstrapValidator("resetForm",true); 
 }
 
 // obtener la fecha actual de nuestro sistema
@@ -44,7 +46,6 @@ function fecha_actual(){
 }
 //Función listar
 function listar()
-
 {
 	 tabla=$('#listado').dataTable(
 	{
@@ -102,7 +103,6 @@ function listarArticulos()
     }).DataTable();
 }
 
-
 function guardaryeditar(e)
 {
 // VALIDATION formulario
@@ -151,6 +151,7 @@ $('#formulario') .bootstrapValidator({
 	    	$('.nav-tabs a:last').tab('show');
 	    	  $('#formulario').bootstrapValidator("resetForm",true); 
 	          listar();
+          
 	    }
 
 	});
@@ -179,7 +180,6 @@ function mostrar(idventa)
     }); 
 }
 
- 
 //Función para anular una venta,por x o y razon, cada venta anulada obtendra en su
 //fuente de dato un atributo anulado el cual no se sumara a la venta total del dia o
 //inventario

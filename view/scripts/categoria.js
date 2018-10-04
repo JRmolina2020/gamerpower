@@ -2,6 +2,7 @@ var tabla;
  function init(){
 	listarcategoria();
 	guardaryeditarcategoria();	
+
 	// $('#ciudad').selectpicker('refresh');
 
 }
@@ -12,7 +13,9 @@ function limpiarcategoria()
 	$("#idcategoria").val("");
 	$("#descripcion").val("");
 	$('#modalcategoria').on('shown.bs.modal', function () {
-	$('#formulariocategoria').find('[name="nombre"]').focus();});
+	$('#formulariocategoria').find('[name="nombre"]').focus();
+});
+
 
 }
 
@@ -58,23 +61,20 @@ $('#formulariocategoria') .bootstrapValidator({
 },
 
 	fields: {
-		// validaciones
-		
 		nombre: {
 			message: 'Categoria invalida',
 			validators: {
 				notEmpty: {
-					message: 'El nombre  es obligatorio , no puede estar vacio.',
+					message: 'El nombre  de la categoria es invalido',
 				},
-				
                     regexp: {
                         regexp: /^[a-zA-Z\s]+$/,
-                        message: 'Ingrese un nombre correcto,no se aceptan valores numericos'
+                        message: 'Ingrese una categoria correcta,no se aceptan valores numericos'
                     },
 				stringLength: {
-					min: 4,
-					max: 15,
-					message: 'Minimo cuatro caracteres y Maximo 15'
+					min: 3,
+					max: 20,
+					message: 'Minimo 3 caracteres y Maximo 20 caracteres'
 				},
 				
 			}
@@ -87,14 +87,10 @@ $('#formulariocategoria') .bootstrapValidator({
 				notEmpty: {
 					message: 'La Descripcion es obligatoria'
 				},
-				 regexp: {
-                        regexp: /^[a-zA-Z\s]+$/,
-                        message: 'Ingrese una descripcion correcta,no se aceptan valores numericos'
-                    },
 				stringLength: {
-					min: 3,
-					max: 20,
-					message: 'Minimo tres caracteres y Maximo 20 '
+					min: 7,
+					max: 90,
+					message: 'Minimo tres caracteres y Maximo 90 caracteres '
 				},
 				
 			}
@@ -153,7 +149,6 @@ function mostrar(idcategoria)
 }
 
 //Función para desactivar registros
-
 function desactivar(idcategoria)
 {
  swal({

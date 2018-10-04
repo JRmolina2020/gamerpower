@@ -9,7 +9,7 @@ if (!isset($_SESSION['correo'])) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Gamer fly | www.GamerFly.com</title>
+	<title>Gamer fly | www.GamersBI.com</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="../public/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../public/css/font-awesome.css">
@@ -49,13 +49,14 @@ if (!isset($_SESSION['correo'])) {
 			<section class="sidebar">
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="../files/usuario/<?php echo $_SESSION['imagen']?>" class="img-circle" alt="User Image">
+						<img src="../files/usuario/<?php echo $_SESSION['imagen']?>" width="40px" height="40px" class="img-circle" alt="User Image">
 
 					</div>
 					<div class="pull-left info">
 						<p><?php echo $_SESSION['nombre']?></p>
 						<a href="#"><i class="fa fa-circle text-success"></i>Enlinea</a>
 					</div>
+					<br><br>
 				</div>
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header"><?php echo $_SESSION['cargo']?></li>

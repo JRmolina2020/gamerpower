@@ -2,15 +2,9 @@
 var tabla;
 
  function init(){
-	
-	
 	guardaryeditar();
 	listar();
-  fecha_actual();
   listarArticulos();
-
-
-	
 	// cargamos los provedores
 	$.post("../controller/ingreso.php?op=selectProveedor", function(r){
 	 $("#idproveedor").html(r);
@@ -19,12 +13,10 @@ var tabla;
 	});
     
 }
-
 function activar(){
-
  $("#btnGuardar").hide();
  $("#btnAgregarArt").show();
-
+  fecha_actual();
 }
 //Función limpiar
 function limpiar()
@@ -131,8 +123,8 @@ $('#formulario') .bootstrapValidator({
 
         stringLength: {
           min: 3,
-          max: 5,
-          message: 'Minimo 3 caracteres y Maximo 5'
+          max: 4,
+          message: 'Minimo 3 digitos y Maximo 4 digitos'
         },
             regexp: {
             regexp: /^[a-zA-Z0-9_\.]+$/,
@@ -142,8 +134,6 @@ $('#formulario') .bootstrapValidator({
       }
     },
    
-
-
 	}
 })
 
@@ -168,10 +158,10 @@ $('#formulario') .bootstrapValidator({
 	    		showConfirmButton: false,
 	    		timer: 1500
 	    	});  
-	    	limpiar();	
 	    	$('.nav-tabs a:last').tab('show');
 	    	  $('#formulario').bootstrapValidator("resetForm",true); 
 	          listar();
+            limpiar();  
 	    }
 
 	});
@@ -303,11 +293,6 @@ function modificarSubototales()
       cont=0;
     }
   }
- 
- 
-
-
- // 
  
   function eliminarDetalle(indice){
     $("#fila" + indice).remove();

@@ -10,7 +10,7 @@ require 'header.php';
             <!-- menu tab custom -->
             <div class="nav-tabs-custom">
             <ul class="nav nav-tabs pull-right">
-              <li><a href="#nuevox" onclick="mostrardivimagen()" data-toggle="tab">Nuevo</a></li>
+              <li><a href="#nuevox" data-toggle="tab">Nuevo</a></li>
                 <li class="active"><a href="#listax" data-toggle="tab">Listado</a></li>
               <li class="pull-left header"><i class="fa fa-inbox"></i>Articulos</li>
             </ul>
@@ -71,13 +71,6 @@ require 'header.php';
                      <select id="idcategoria" name="idcategoria" class="form-control selectpicker"
                      data-live-search="true">
                    </select>
-                     </div>
-                   </div>
-                   <!-- input cantidad -->
-                    <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12" id="divstock">
-                     <div class="form-group">
-                     <label class="control-label">Stock</label>
-                     <input type="text" class="form-control"  name="stock" id="stock" >
                      </div>
                    </div>
                  </div>

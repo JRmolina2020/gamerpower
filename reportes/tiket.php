@@ -21,7 +21,7 @@ $rspta = $venta->ventacabecera($_GET["id"]);
 $reg = $rspta->fetch_object();
  
 //Establecemos los datos de la empresa
-$empresa = "Tienda de videojuegos GAMERS FLY";
+$empresa = "Tienda de videojuegos GAMERS BI";
 $documento = "9281 DIAN";
 $direccion = "GALERIA LOCAL #5,SEGUNDO PISO    ";
 $telefono = "3006754499";
@@ -63,7 +63,7 @@ $email = "GAMER@GMAIL.COM";
     <tr>
         <td>CANT.</td>
         <td>DESCRIPCION</td>
-        <td WIDTH="40"></td>
+        <td WIDTH="40">DES</td>
         <td align="right">IMPORTE</td>
 
     </tr>
@@ -97,17 +97,16 @@ $email = "GAMER@GMAIL.COM";
       <td colspan="6">&nbsp;</td>
     </tr>      
     <tr>
-      <td colspan="6" align="center">¡Gracias por su compra!</td>
+      <td colspan="6" align="center">Gracias por su compra</td>
     </tr>
     <tr>
-      <td colspan="6" align="center">GAMERS FLY</td>
+      <td colspan="6" align="center">GAMERS BI</td>
     </tr>
     <tr>
-    <td colspan="6" align="center">eeeeeeeeeeee
-      eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-  eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</td>
+    <td colspan="6" align="center">Gamers bi no se hace responsable
+    por perdidas o daño de los equipos despues de probarlos
+en nuestras instalaciones,cualquier queja o reclamo
+presentelas a la siguiente linea 5-43423</td>
     </tr>
     <tr>
       <td colspan="6" align="center">VALLEDUPAR - COLOMBIA</td>

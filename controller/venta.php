@@ -8,19 +8,18 @@ $idusuario=$_SESSION["idusuario"];
 $num_comprobante=isset($_POST["num_comprobante"])? limpiarCadena($_POST["num_comprobante"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
 $total_venta=isset($_POST["total_venta"])? limpiarCadena($_POST["total_venta"]):"";
-
 switch ($_GET["op"]){
     case 'guardaryeditar':
     if (empty($idventa)){
         $rspta=$venta->insertar($idcliente,$idusuario,$num_comprobante,$fecha_hora,$total_venta,
-            $_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_venta"],$_POST["descuento"]);
-      
-    }
-    else {
-     echo $rspta ? "Venta registrada" : "No se pudieron registrar todos los datos de la venta";
+        $_POST["idarticulo"],$_POST["cantidad"],$_POST["precio_venta"],$_POST["descuento"]);
+        if ($rspta) {
+            echo "Venta realizada con exito";
+        }else{
+            echo "Venta rechazada";
+        }  
     }
     break;
-    
     case 'anular':
     $rspta=$venta->anular($idventa);
     echo $rspta ? "Venta anulada" : "Venta no se puede anular";

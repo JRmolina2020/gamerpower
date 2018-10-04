@@ -10,7 +10,7 @@ require 'header.php';
             <!-- menu tab custom -->
             <div class="nav-tabs-custom">
             <ul class="nav nav-tabs pull-right">
-              <li><a href="#nuevox" onclick="mostrardivimagen()" data-toggle="tab">Nuevo</a></li>
+              <li><a href="#nuevox"  data-toggle="tab">Nuevo</a></li>
                 <li class="active"><a href="#listax" data-toggle="tab">Listado</a></li>
               <li class="pull-left header"><i class="fa fa-inbox"></i>Gestiòn de usuarios</li>
             </ul>

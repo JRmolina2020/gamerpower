@@ -10,7 +10,7 @@ require 'header.php';
             <!-- menu tab custom -->
             <div class="nav-tabs-custom">
             <ul class="nav nav-tabs pull-right">
-              <li><a href="#nuevox"  data-toggle="tab">Comprar</a></li>
+              <li><a href="#nuevox" onclick="activar()"  data-toggle="tab">Comprar</a></li>
                 <li class="active"><a href="#listax" data-toggle="tab">Listado</a></li>
               <li class="pull-left header"><i class="fa fa-inbox"></i>Generar compra</li>
             </ul>

@@ -77,19 +77,25 @@ codigo: {
 			message: 'Codigo del articulo invalido',
 			validators: {
 				notEmpty: {
-					message: 'El codigo es obligatorio'
+					message: 'El codigo es obligatorio,no puede estar vacio'
 				},
 				integer: {
-                        message: 'Digite un numero valido',
+                        message: 'Digite un numero valido,no se aceptan caracteres',
                          thousandsSeparator: '',
                             decimalSeparator: '.'
                     },
-
+                   
 				stringLength: {
 					min: 3,
-					max: 8,
-					message: 'Minimo 5 caracteres y Maximo 8'
+					max: 4,
+					message: 'Minimo 3 digito y Maximo 4 digitos'
 				},
+				 between: {
+                            min: 1,
+                            max: 9999,
+                            message: 'El primer digito debe ser  mayor a 0 y debe ser menor a 9999'
+                        },
+
 						regexp: {
 						regexp: /^[a-zA-Z0-9_\.]+$/,
 						message: 'No se permiten espacios',
@@ -102,18 +108,35 @@ codigo: {
 			message: 'Nombre del aritculo invalido',
 			validators: {
 				notEmpty: {
-					message: 'El Nombre de el articulo  es obligatorio y no puede estar vacio.'
+					message: 'El Nombre es obligatorio ,no puede estar vacio.'
 				},
 				stringLength: {
 					min: 3,
 					max: 20,
-					message: 'Minimo 3 caracteres y Maximo 20 '
+					message: 'Minimo 3 caracteres y Maximo 20 caracteres '
 				},
+				 regexp: {
+                        regexp: /^[a-zA-Z\s]+$/,
+                        message: 'Ingrese un nombre correcto,no se aceptan valores numericos'
+                    },
 
 			}
 		},
-
-
+		descripcion: {
+			message: 'Descripcion invalida',
+			validators: {
+				notEmpty: {
+					message: 'La Descripcion es obligatoria,no puede estar vacia'
+				},
+				stringLength: {
+					min: 7,
+					max: 90,
+					message: 'Minimo 7 caracteres y Maximo 90 caracteres'
+				},
+				
+			}
+		},
+		
 		imagen: {
                     validators: {
                         file: {
@@ -124,26 +147,6 @@ codigo: {
                         },
                     }
                 },
-
-		descripcion: {
-			message: 'Descripcion del aritculo invalida',
-			validators: {
-				notEmpty: {
-					message: 'La descripcion de el articulo  es obligatorio y no puede estar vacio.'
-				},
-
-			}
-		},
-		idcategoria: {
-			message: 'Debe asignarle una categoria al articulo',
-			validators: {
-				notEmpty: {
-					message: 'Debe asignarle una categoria al articulo'
-				},
-
-			}
-		},
-
 	}
 })
 

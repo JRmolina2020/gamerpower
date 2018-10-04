@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Gamers Fly | Log in</title>
+  <title>GamersBI | Log in</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <link rel="stylesheet" href="public/css/bootstrap.min.css">
 <link rel="stylesheet" href="public/css/font-awesome.css">
@@ -17,7 +17,7 @@
 <body class="hold-transition">
 <div class="login-box">
    <div class="login-logo">
-    <a href="../../index2.html"><b>Gamers</b>Fly</a>
+    <a href="../../index2.html"><b>Gamers</b>BI</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

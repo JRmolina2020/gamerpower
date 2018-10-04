@@ -1,5 +1,4 @@
 <?php 
-if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
 require_once "../model/usuario.php";
 $usuario=new Usuario();
 $idusuario=isset($_POST["idusuario"])? limpiarCadena($_POST["idusuario"]):"";
@@ -16,7 +15,7 @@ $imagen=isset($_POST["imagen"])? limpiarCadena($_POST["imagen"]):"";
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 
-if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
+		if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name']))
 		{
 			$imagen=$_POST["imagenactual"];
 		}
@@ -30,11 +29,10 @@ if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['im
 			}
 		}
 		$clave2=md5(sha1($clave));
-//idusuario indenti ,nombre apellido direccion,telefono cargo,correo,clave,condicion,imagen
-		// 
+
 		if (empty($idusuario)){
 			$rspta=$usuario->insertar($identi,$nombre,$apellido,$direccion,$telefono,$cargo,$correo,$clave2,$imagen);
-			echo $rspta ? "usuario registrado" : "Artículo no se pudo registrar";
+			echo $rspta ? "usuario registrado" : "Usuario no se pudo registrar";
 		}
 		else {
 			$rspta=$usuario->editar($idusuario,$identi,$nombre,$apellido,$direccion,$telefono,$cargo,$correo,$clave2,$imagen);
@@ -130,9 +128,7 @@ case 'salir':
         header("Location: ../index.php");
  
     break;
-}
-}else {
-header("HTTP/1.0 403 Forbidden");
+
 exit;
 }
 ?>

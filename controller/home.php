@@ -27,7 +27,6 @@ $sumcli=$regcli->sumcli;
 $rsptap = $consulta->total_provedores();
 $regp=$rsptap->fetch_object();
 $sump=$regp->sump;
-
    //Datos para mostrar el gráfico de barras de las compras
 $compras10 = $consulta->comprasultimos_10dias();
 $fechasc='';
@@ -56,7 +55,7 @@ $totalesv=substr($totalesv, 0, -1);
 	  require_once"../model/Articulo.php";
 	    $articulo=new Articulo();
 		$rsptaA=$articulo->listardiez();
-
+// productos mas vendidos en el almacen
     require_once"../model/Consultas.php";
       $consulta=new Consultas();
     $rsptapm=$consulta->productos_mas_vendidos();
