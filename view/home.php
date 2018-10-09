@@ -88,175 +88,17 @@ require_once'../controller/home.php';
           </div>
           <!-- EMD CARD VENDEDOR-->
           <!-- end body panel -->
+          <!-- los cinco producto mas vendidos -->
+          <br><br>
+         
        </div>
       </div>
     </div>
-  </div>
-          <div class="row">
-           <!-- graficos-->
-            <div class="col-lg-4">
-                <div class="box box-primary">
-                  <div class="box-header with-border">
-                    Compras de los 10 ultimos dias
-                  </div>
-                  <div class="box-body">
-                    <canvas id="compras" width="400" height="300"></canvas>
-                  </div>
-                </div>
-              </div>
-              <!-- grafico de ventas en los ultimos 12 meses del año -->
-              <div class="col-lg-4">
-                <div class="box box-primary">
-                  <div class="box-header with-border">
-                    Ventas de los últimos 12 meses
-                  </div>
-                  <div class="box-body">
-                    <canvas id="ventas" width="400" height="300"></canvas>
-                  </div>
-                </div>
-              </div>
-             <!-- END graficos -->
-            <div class="col-lg-4">
-               <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Nuevos productos</h3>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <ul class="products-list product-list-in-box">
-           <?php
-           while ($regA=$rsptaA->fetch_object()){
-           $nombrex = $regA->nombre;
-            $descrix = $regA->descripcion;
-            $preciox = $regA->precio_venta;
-            $imagenx = $regA->imagen;
-           ?>
-                <li class="item">
-                  <div class="product-img">
-                  <?php echo"<img src='../files/articulo/".$imagenx."'>";?>
-                  </div>
-                  <div class="product-info">
-                    <a href="javascript:void(0)" class="product-title"><?php echo $nombrex ?>
-                      <span class="label label-warning pull-right"><?php echo $preciox; ?></span></a>
-                    <span class="product-description">
-                          <?php echo $descrix; ?>
-                        </span>
-                  </div>
-                </li>
-                <?php }?>
-
-              </ul>
-            </div>
-            <div class="box-footer text-center">
-              <a href="Articulo.php" class="uppercase">Ver todos los productos</a>
-            </div>
-          </div>
-        </div>
+  </div>    
 </section>
 </div>
 <script type="text/javascript" src="../public/js/Chart.min.js"></script>
 <script type="text/javascript" src="../public/js/Chart.bundle.min.js"></script>
-<script type="text/javascript">
-  var ctx = document.getElementById("compras").getContext('2d');
-  var compras = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: [<?php echo $fechasc; ?>],
-      datasets: [{
-        label: '# Compras en $/ de los últimos 10 días',
-        data: [<?php echo $totalesc; ?>],
-        backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)'
-        ],
-        borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero:true
-          }
-        }]
-      }
-    }
-  });
-  var ctx = document.getElementById("ventas").getContext('2d');
-  var ventas = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: [<?php echo $fechasv; ?>],
-      datasets: [{
-        label: '# Ventas en $/ de los últimos 12 meses',
-        data: [<?php echo $totalesv; ?>],
-        backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 159, 132, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero:true
-          }
-        }]
-      }
-    }
-  });
-</script>
 <?php
 require 'footer.php';
 ?>

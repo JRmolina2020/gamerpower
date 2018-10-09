@@ -48,14 +48,16 @@ Class Categoria
 	//Implementar un método para mostrar los datos de un registro a modificar
 	public function mostrar($idcategoria)
 	{
-		$sql="SELECT * FROM categoria WHERE idcategoria='$idcategoria'";
+		$sql="SELECT * FROM categoria 
+		WHERE idcategoria='$idcategoria'";
 		return ejecutarConsultaSimpleFila($sql);
 	}
 
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT * FROM categoria order by idcategoria desc";
+		$sql="SELECT * FROM categoria 
+		ORDER BY idcategoria ASC";
 		return ejecutarConsulta($sql);		
 	}
 	//Implementar un método para listar los registros y mostrar en el select

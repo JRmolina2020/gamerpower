@@ -1,6 +1,8 @@
 <?php
 require_once "../model/Consultas.php";
+ require_once"../model/Articulo.php";
 $consulta = new Consultas();
+
   // mostrar el total de las comprar en el dia actual
 $rsptac = $consulta->totalcomprahoy();
 $regc=$rsptac->fetch_object();
@@ -50,15 +52,18 @@ while ($regfechav= $ventas12->fetch_object()) {
   //Quitamos la última coma
 $fechasv=substr($fechasv, 0, -1);
 $totalesv=substr($totalesv, 0, -1);
-
 // consulta de los  ultimos productos ingresados
-	  require_once"../model/Articulo.php";
-	    $articulo=new Articulo();
+	 $articulo=new Articulo();
 		$rsptaA=$articulo->listardiez();
-// productos mas vendidos en el almacen
-    require_once"../model/Consultas.php";
-      $consulta=new Consultas();
+// los 5 productos mas vendidos en el almacen
     $rsptapm=$consulta->productos_mas_vendidos();
+    // los 5 productos menos vendidos en el almacen
+    $rsptamv=$consulta->productos_menos_vendidos();
+     // Rendimiento de vendedor por dia
+    $conma=$consulta->rendi_vende_diario();
+     // Rendimiento de vendedor por semana
+    $rendise=$consulta->rendi_vende_semana();
+   
 
 ?>
 

@@ -21,7 +21,6 @@ if (!isset($_SESSION['correo'])) {
 	<link rel="stylesheet" type="text/css" href="../public/datatables/jquery.dataTables.min.css">    
 	<link href="../public/datatables/buttons.dataTables.min.css" rel="stylesheet"/>
 	<link href="../public/datatables/responsive.dataTables.min.css" rel="stylesheet"/>
-
 	<link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
 	<!-- VALIDATOR -->
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
@@ -66,6 +65,16 @@ if (!isset($_SESSION['correo'])) {
 					<li class="treeview">
 						<a href="home.php">
 							<i class="fa fa-home"></i> <span>Inicio</span>
+						</a>
+					</li>
+					<li class="treeview">
+						<a href="indicadores.php">
+							<i class="fa fa-bar-chart"></i> <span>Indicadores</span>
+						</a>
+					</li>
+					<li class="treeview">
+						<a href="reportes.php">
+							<i class="fa  fa-newspaper-o"></i> <span>Reportes</span>
 						</a>
 					</li>
 					<li class="treeview">
@@ -164,7 +173,12 @@ if (!isset($_SESSION['correo'])) {
 							<li><a href="venta.php"><i class="fa fa-cart-plus "></i>Nueva venta</a></li>
 						</ul>
 					</li>
-            
+					<li class="treeview">
+						<a href="../controller/usuario.php?op=salir">
+							<i class="fa fa-times"></i> <span>Salir</span>
+						</a>
+					</li>
+
 				<?php	
 				}
 				?>
