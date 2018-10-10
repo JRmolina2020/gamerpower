@@ -62,7 +62,7 @@ switch ($_GET["op"]){
  				"1"=>$reg->categoria,
  				"2"=>$reg->codigo,
  				"3"=>$reg->nombre,
- 				"4"=>($reg->stock =="0")?'<span class="label bg-red">Agostado</span>':
+ 				"4"=>($reg->stock =="0")?'<span class="label bg-red">Agotado</span>':
  				$reg->stock
  				,
  				"5"=>$reg->descripcion,

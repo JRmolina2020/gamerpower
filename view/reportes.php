@@ -26,18 +26,18 @@ require_once'../controller/home.php';
             <tbody>
             <tr>
               <td>1</td>
-               <td>Productos agotados en el dia</td>
-                <td><button type="button" class="btn btn-block btn-xs btn-primary btn-flat">Click</button></td>
+               <td>Productos agotados</td>
+                <td><a href="../reportes/productos_agotados.php" type="button" class="btn btn-block btn-xs btn-primary btn-flat">Click</a></td>
             </tr>
             <tr>
               <td>2</td>
                <td>Productos apunto de agotarse</td>
-                <td><button type="button" class="btn btn-block btn-xs btn-primary btn-flat">Click</button></td>
+                <td><a href="../reportes/productos_apunto.php" type="button" class="btn btn-block btn-xs btn-primary btn-flat">Click</button></td>
             </tr>
              <tr>
               <td>3</td>
                <td>Ventas rechazadas en el dia</td>
-              <td><button type="button" class="btn btn-block btn-xs btn-primary btn-flat">Click</button></td>
+              <td><a href="../reportes/ventas_rechazadas.php" type="button" class="btn btn-block btn-xs btn-primary btn-flat">Click</button></td>
             </tr>
              <tr>
               <td>4</td>
@@ -47,6 +47,19 @@ require_once'../controller/home.php';
             </tbody>
           </table>
           </div>
+          <div class="col-lg-6">
+            <form method="GET" action="../reportes/rango.php">
+            <div class="form-group col-lg-6 col-md-3 col-sm-6 col-xs-12">
+              <label>Fecha Inicio</label>
+             <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio">
+              </div>
+             <div class="form-group col-lg-6 col-md-3 col-sm-6 col-xs-12">
+             <label>Fecha Fin</label>
+            <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" >
+            </div>
+            <button type="submit" class="btn btn-primary">Consultar</button>
+          </div>
+          </form>
             <!-- end -->
       </div>
     </div>

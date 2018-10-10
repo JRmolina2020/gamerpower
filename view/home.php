@@ -97,8 +97,7 @@ require_once'../controller/home.php';
   </div>    
 </section>
 </div>
-<script type="text/javascript" src="../public/js/Chart.min.js"></script>
-<script type="text/javascript" src="../public/js/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.src.js"></script>
 <?php
 require 'footer.php';
 ?>

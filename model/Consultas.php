@@ -11,15 +11,24 @@ Class Consultas
     }
  
     
-    public function ventasfechacliente($fecha_inicio,$fecha_fin,$idcliente)
+    public function ventasfechacliente($fecha_inicio,$fecha_fin)
     {
-        $sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as usuario, p.nombre as cliente,v.num_comprobante,v.total_venta,
-        v.estado FROM venta v 
+        $sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as vendedor,u.apellido as apellidoV, 
+        p.nombre as cliente,p.apellido as apellidoC,v.num_comprobante as numero ,v.total_venta as total,v.estado FROM venta v 
         INNER JOIN persona p ON v.idcliente=p.idpersona 
         INNER JOIN usuario u ON v.idusuario=u.idusuario 
-        WHERE DATE(v.fecha_hora)>='$fecha_inicio' AND DATE(v.fecha_hora)<='$fecha_fin' AND v.idcliente='$idcliente'";
+        WHERE DATE(v.fecha_hora)>='$fecha_inicio' AND DATE(v.fecha_hora)<='$fecha_fin' AND v.estado ='Aceptado'
+        ORDER BY v.fecha_hora ASC";
         return ejecutarConsulta($sql);      
     }
+// SUMA DEL RANGO
+     public function sumaventafecha($fecha_inicio,$fecha_fin)
+    {
+        $sql="SELECT SUM(v.total_venta) as total FROM venta v 
+        WHERE DATE(v.fecha_hora)>='$fecha_inicio' AND DATE(v.fecha_hora)<='$fecha_fin' AND v.estado ='Aceptado'";
+        return ejecutarConsulta($sql);      
+    }
+
  
     // total de una las compras que se han realizados en el dia actual en el almacen
     public function totalcomprahoy()
@@ -122,6 +131,32 @@ Class Consultas
         return ejecutarConsulta($sql);
     }
 
+    // PRODUCTOS AGOTADOS POR DIA
+    public function productos_agotados()
+    {
+        $sql="SELECT  a.nombre as nombre,a.stock as cantidad,a.imagen as imagen FROM articulo a 
+        WHERE a.stock =0;";
+        return ejecutarConsulta($sql);
+    }
+     // PRODUCTOS APUNTO DE AGOTARZE
+    public function productos_apunto()
+    {
+        $sql="SELECT  a.nombre as nombre,a.stock as cantidad,a.imagen as imagen FROM articulo a 
+        WHERE a.stock >0 AND a.stock <=5";
+        return ejecutarConsulta($sql);
+    }
+
+   //VENTAS RECHAZADAS HOY
+
+    public function ventas_rechazadas()
+    {
+        $sql="SELECT U.nombre as vendedorN,u.apellido as vendedorA,V.fecha_hora,V.num_comprobante,V.total_venta,P.nombre,P.apellido FROM venta V
+        INNER JOIN persona P on P.idpersona = V.idcliente 
+        INNER JOIN usuario U on U.idusuario = v.idusuario
+        WHERE V.estado='Anulado' AND V.fecha_hora =CURDATE()";
+        return ejecutarConsulta($sql);
+    }
+
     public function ventasultimos_12meses()
     {
         $sql="SELECT DATE_FORMAT(fecha_hora,'%M') as fecha,SUM(total_venta) as total 
@@ -129,5 +164,8 @@ Class Consultas
         ORDER BY fecha_hora DESC limit 0,10";
         return ejecutarConsulta($sql);
     }
+
+
+
 }
  
