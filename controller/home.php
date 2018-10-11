@@ -57,6 +57,7 @@ $totalesv=substr($totalesv, 0, -1);
 		$rsptaA=$articulo->listardiez();
 // los 5 productos mas vendidos en el almacen
     $rsptapm=$consulta->productos_mas_vendidos();
+    $rsptapmx=$consulta->productos_mas_vendidos();
     // los 5 productos menos vendidos en el almacen
     $rsptamv=$consulta->productos_menos_vendidos();
      // Rendimiento de vendedor por dia

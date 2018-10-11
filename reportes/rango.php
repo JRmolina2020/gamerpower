@@ -14,7 +14,7 @@ use Dompdf\Dompdf;
  $html='
  <link rel="stylesheet" href="../public/dompdf/plantilla.css">
 <center>
- <img src="../public/images/logo.jpg" heigth="100" width="100">
+ <img src="../public/images/logo.PNG" heigth="100" width="100">
  </center>
  <h5>VENTAS DE RANGO</h5>
  <table>
@@ -24,7 +24,7 @@ use Dompdf\Dompdf;
        <th>Vendedor</th>
        <th>Cliente</th>
        <th>#venta</th>
-       <th bgcolor="#E72424">Total</th>
+       <th>Total</th>
      </tr>
    </thead>
    <tbody>';
@@ -50,7 +50,7 @@ use Dompdf\Dompdf;
  '</tbody></table>
  <table  style="width: 15px">
  <tr>
- <th bgcolor="#E72424">TOT</th>
+ <th bgcolor="#fff">TOTAL</th>
  </tr>
  </thead>
   <tbody>
@@ -58,7 +58,9 @@ use Dompdf\Dompdf;
     while ($reg2=$rspta2->fetch_object()){
     $suma = $reg2->total;	
    $html.='
+   <tr>
    <td>'.$suma.'</td>
+   </tr>
    </tbody>';
 }
   $html.='</table>';

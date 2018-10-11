@@ -13,7 +13,7 @@
  $html='
  <link rel="stylesheet" href="../public/dompdf/plantilla.css">
 <center>
- <img src="../public/images/logo.jpg" heigth="100" width="100">
+ <img src="../public/images/logo.png" heigth="100" width="100">
  </center>
  <h5>PRODUCTOS AGOTADOS</h5>
  <table>
@@ -21,7 +21,6 @@
      <tr>
        <th>Nombre</th>
        <th>Cantidad</th>
-       <th></th>
      </tr>
    </thead>
    <tbody>';

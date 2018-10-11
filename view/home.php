@@ -2,6 +2,11 @@
 require 'header.php';
 require_once'../controller/home.php';
 ?>
+<script src="../public/js/highcharts.js"></script>
+<script src="../public/js/exporting.js"></script>
+<script src="../public/js/highcharts-3d.js"></script>
+<script src="../public/js/export-data.js"></script>
+
 <div class="content-wrapper">
   <section class="content">
    <div class="row">
@@ -88,8 +93,12 @@ require_once'../controller/home.php';
           </div>
           <!-- EMD CARD VENDEDOR-->
           <!-- end body panel -->
-          <!-- los cinco producto mas vendidos -->
+  
           <br><br>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+         <div id="container" style="height: 400px"></div>
+         </div>
+
          
        </div>
       </div>
@@ -97,7 +106,54 @@ require_once'../controller/home.php';
   </div>    
 </section>
 </div>
-<script type="text/javascript" src="https://code.highcharts.com/highcharts.src.js"></script>
+<script type="text/javascript">
+Highcharts.chart('container', {
+    chart: {
+        type: 'column',
+        options3d: {
+            enabled: true,
+            alpha: 10,
+            beta: 25,
+            depth: 70
+        }
+    },
+    title: {
+        text: 'LOS 5 PRODUCTOS MAS VENDIDOS'
+    },
+    subtitle: {
+        text: 'AÑO 2018'
+    },
+    plotOptions: {
+        column: {
+            depth: 25
+        }
+    },
+    xAxis: {
+      categories:[
+        <?php
+           while ($rsmv=$rsptapm->fetch_object()){
+           $producto = $rsmv->producto;?>
+             '<?php echo $producto;?>',
+             <?php } ?>
+      ]
+    },
+    yAxis: {
+        title: {
+            text: null
+        }
+    },
+    series: [{
+        name: 'Ventas',
+        data: [
+        <?php
+           while ($rsmvs=$rsptapmx->fetch_object()){
+           $comprado = $rsmvs->comprado;?>
+             <?php echo $comprado;?>,
+             <?php } ?>
+        ]
+    }]
+});
+    </script>
 <?php
 require 'footer.php';
 ?>

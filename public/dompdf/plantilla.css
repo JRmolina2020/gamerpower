@@ -1,5 +1,5 @@
 table, td, th {    
-    border: 0px solid #ddd;
+    border: 6px solid #fff;
     text-align: center;
 }
 
@@ -9,9 +9,10 @@ table {
 }
 
 th, td {
-    padding: 15px;
+    padding: 6px;
 }
 
 th{
-	background:#7FB3D5;
+	background:#D13C3C;
+	color:#FFF;
 }

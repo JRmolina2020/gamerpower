@@ -48,16 +48,22 @@ require_once'../controller/home.php';
           </table>
           </div>
           <div class="col-lg-6">
+            <p>Reporte de ventas por rango de fecha </p><br>
             <form method="GET" action="../reportes/rango.php">
-            <div class="form-group col-lg-6 col-md-3 col-sm-6 col-xs-12">
+            <div class="form-group col-lg-6 col-md-3 col-sm-12 col-xs-12">
               <label>Fecha Inicio</label>
              <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio">
               </div>
-             <div class="form-group col-lg-6 col-md-3 col-sm-6 col-xs-12">
+             <div class="form-group col-lg-4 col-md-4 col-sm-12 col-xs-12">
              <label>Fecha Fin</label>
             <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" >
             </div>
-            <button type="submit" class="btn btn-primary">Consultar</button>
+            <div class="col-lg-2">
+              <label>Consultar</label>
+            <button type="submit" class="btn btn-block btn-flat btn-primary btn-md">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
           </div>
           </form>
             <!-- end -->

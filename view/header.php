@@ -28,7 +28,7 @@ if (!isset($_SESSION['correo'])) {
 	<link rel="stylesheet" type="text/css" href="../public/css/sweetalert2.min.css">
 	<!-- DIV carga de imagen -->
 </head>
-<body class="hold-transition skin-green sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
 	<div class="wrapper">
 		<header class="main-header">
 			<a href="../../index2.html" class="logo">
